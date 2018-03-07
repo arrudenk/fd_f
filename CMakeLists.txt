@@ -8,7 +8,7 @@ set(CMAKE_C_STANDARD 99)
 link_directories(${PROJECT_SOURCE_DIR}/mlx)
 include_directories(${PROJECT_SOURCE_DIR}/mlx)
 
-set(SOURCE_FILES src/main.c)
+set(SOURCE_FILES src/main.c include/fdf.h)
 
 add_executable(fd_f ${SOURCE_FILES})
 target_link_libraries(fd_f -lmlx -lXext -lX11)
