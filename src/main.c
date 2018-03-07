@@ -8,7 +8,8 @@ int		main(int argc, char **argv)
 	mlx_ptr = mlx_init();
 	win_ptr = mlx_new_window(mlx_ptr, WIDTH, HEIGHT, "Hello MLX");
 
-	draw_line(mlx_ptr, win_ptr, WIDTH/2, HEIGHT/2, WIDTH/3, HEIGHT/3, VIOLET);
+	draw_line(mlx_ptr, win_ptr, WIDTH/2, HEIGHT/2, 60, 25, VIOLET);
+	draw_line(mlx_ptr, win_ptr, WIDTH/2, HEIGHT/2, WIDTH-60, 25, VIOLET);
 	mlx_key_hook(win_ptr, hook_keydown, NULL);
 
 	mlx_loop(mlx_ptr);
@@ -37,12 +38,11 @@ void 	draw_line(void* mlx_ptr, void* win_ptr, double x1, double y1, double x2, d
 
 	while (startX < endX)
 	{
-		mlx_pixel_put(mlx_ptr, win_ptr, startX, y, color);
-
 		y = ((y2 - y1)/(x2 - x1)) * (startX - x1) + y1;
+		mlx_pixel_put(mlx_ptr, win_ptr, startX, y, color);
 		error += delta_error;
 
-		/*if (error >= 0.5) {
+		/*if (error >= 0.45) {
 			y += direction_y;
 			error--;
 		}*/
