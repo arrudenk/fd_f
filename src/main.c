@@ -1,59 +1,84 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/07 13:01:25 by arrudenk          #+#    #+#             */
+/*   Updated: 2018/03/07 13:01:27 by arrudenk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/fdf.h"
 
-int		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
-	void *mlx_ptr;
-	void *win_ptr;
+	int		fd;
+	char	*line;
+	t_pixel	*pix;
+	t_mlx	*mlx;
+	t_mlx	*map;
+	int		i;
+	int 	x_size;
 
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, WIDTH, HEIGHT, "Hello MLX");
+	i = 0;
+	x_size = 0;
+	mlx = init_mlx();
+	fd = open("../maps/test1", O_RDONLY);
 
-	draw_line(mlx_ptr, win_ptr, WIDTH/2, HEIGHT/2, 60, 25, VIOLET);
-	draw_line(mlx_ptr, win_ptr, WIDTH/2, HEIGHT/2, WIDTH-60, 25, VIOLET);
-	mlx_key_hook(win_ptr, hook_keydown, NULL);
+	while (get_next_line(fd, &line))
+		x_size++;
+	close(fd);
+	ft_strdel(&line);
+	t_pixel		**mapa;
+	ft_memalloc(sizeof(t_pixel *) * x_size);
+	while (get_next_line(fd, &line))
+	{
 
-	mlx_loop(mlx_ptr);
+	}
 
+	mlx_key_hook(mlx->win, hook_keydown, NULL);
+	mlx_loop(mlx->mlx);
 	return (0);
 }
 
-void 	draw_line(void* mlx_ptr, void* win_ptr, double x1, double y1, double x2, double y2, int color) {
-	double delta_x;
-	double delta_y;
-	double delta_error;
-	double y;
-	double error;
-	double startX;
-	double endX;
-	double direction_y;
+void		read_map()
+{
 
-	error = 0;
-	delta_x = fabs(x2-x1);
-	delta_y = fabs(y2-y1);
-	delta_error = delta_y/delta_x;
-
-	direction_y = (y2-y1) > 0 ? 1 : -1;
-	startX = (x2-x1) > 0 ? x1 : x2;
-	endX = (x2-x1) > 0 ? x2 : x1;
-
-	while (startX < endX)
-	{
-		y = ((y2 - y1)/(x2 - x1)) * (startX - x1) + y1;
-		mlx_pixel_put(mlx_ptr, win_ptr, startX, y, color);
-		error += delta_error;
-
-		/*if (error >= 0.45) {
-			y += direction_y;
-			error--;
-		}*/
-
-		startX++;
-	}
 }
 
-int		hook_keydown(int key)
+int			hook_keydown(int key)
 {
-	if (key == 65307)
+	if (key == 65307 || key == 53)
 		exit(1);
 	return (0);
+}
+
+t_pixel		*new_pixel(char *map)
+{
+	t_pixel		*pixel;
+	char		**split;
+	int			i;
+
+	i = -1;
+	split = ft_strsplit(map, ' ');
+	pixel = ft_memalloc(sizeof(t_pixel));
+	pixel->x = ft_atoi(split[0]);
+	pixel->y = ft_atoi(split[1]);
+	while(split[++i])
+		ft_strdel(&split[i]);
+	free(split);
+	ft_strdel(&map);
+	return (pixel);
+}
+
+t_mlx		*init_mlx(void)
+{
+	t_mlx	*mlx;
+
+	mlx = (t_mlx *)ft_memalloc(sizeof(t_mlx));
+	mlx->mlx = mlx_init();
+	mlx->win = mlx_new_window(mlx->mlx, WIDTH, HEIGHT, "Hello MLX");
+	return (mlx);
 }
