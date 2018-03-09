@@ -17,12 +17,12 @@
 //# include <fcntl.h>
 # include <math.h>
 # include <stdlib.h>
-# include <libft.h>
+# include "libft.h"
 
 #define VIOLET 0xA800DB
 
-#define WIDTH 720
-#define HEIGHT 720
+#define WIDTH 640
+#define HEIGHT 480
 
 typedef struct	s_pixel
 {
