@@ -45,7 +45,7 @@ typedef struct	s_map
 
 void			draw_line(t_mlx *map,double x1, double y1, double x2, double y2, int color);
 int				hook_keydown(int key);
-t_pixel			*new_pixel(char *map);
+t_pixel			*new_pixel(char *pix, int x, int y);
 t_mlx			*init_mlx(void);
 
 #endif

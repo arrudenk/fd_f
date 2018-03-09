@@ -20,22 +20,40 @@ int			main(int argc, char **argv)
 	t_mlx	*mlx;
 	t_mlx	*map;
 	int		i;
-	int 	x_size;
+	int		j;
+	int		x_size;
+	int		y_size;
+	t_pixel		***mapa;
+	char		**cols;
 
 	i = 0;
 	x_size = 0;
+	y_size = 0;
 	mlx = init_mlx();
 	fd = open("../maps/test1", O_RDONLY);
 
 	while (get_next_line(fd, &line))
+	{
 		x_size++;
+	}
 	close(fd);
 	ft_strdel(&line);
-	t_pixel		**mapa;
-	ft_memalloc(sizeof(t_pixel *) * x_size);
+	mapa = ft_memalloc(sizeof(t_pixel *) * x_size);
+	fd = open("../maps/test1copy", O_RDONLY);
 	while (get_next_line(fd, &line))
 	{
-
+		j = 0;
+		ft_putstr(line);
+		cols = ft_strsplit(line, ' ');
+		while (cols[y_size])
+			y_size++;
+		mapa[i] = ft_memalloc(sizeof(t_pixel *) * y_size);
+		while (cols[j])
+		{
+			mapa[i][j] = new_pixel(cols[j], i, j);
+			j++;
+		}
+		i++;
 	}
 
 	mlx_key_hook(mlx->win, hook_keydown, NULL);
@@ -55,21 +73,14 @@ int			hook_keydown(int key)
 	return (0);
 }
 
-t_pixel		*new_pixel(char *map)
+t_pixel		*new_pixel(char *pix, int x, int y)
 {
 	t_pixel		*pixel;
-	char		**split;
-	int			i;
 
-	i = -1;
-	split = ft_strsplit(map, ' ');
 	pixel = ft_memalloc(sizeof(t_pixel));
-	pixel->x = ft_atoi(split[0]);
-	pixel->y = ft_atoi(split[1]);
-	while(split[++i])
-		ft_strdel(&split[i]);
-	free(split);
-	ft_strdel(&map);
+	pixel->x = x * 8;
+	pixel->y = y * 8;
+	pixel->z = ft_atoi(pix);
 	return (pixel);
 }
 
