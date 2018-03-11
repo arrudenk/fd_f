@@ -40,7 +40,7 @@ int			main(int argc, char **argv)
 	close(fd);
 	ft_strdel(&line);
 	map->data = ft_memalloc(sizeof(t_vec4 *) * x_size);
-	fd = open("../maps/test1copy", O_RDONLY);
+	fd = open("../maps/test2", O_RDONLY);
 	while (get_next_line(fd, &line))
 	{
 		j = 0;
@@ -56,7 +56,7 @@ int			main(int argc, char **argv)
 			double fetched_z = ft_atoi(cols[j]);
 			double fetched_w = 1;
 
-			map->data[i][j] = new_vec4(fetched_x, -fetched_z, fetched_y, fetched_w);
+			map->data[i][j] = new_vec4(fetched_x, fetched_z, fetched_y, fetched_w);
 			j++;
 		}
 		i++;
@@ -65,8 +65,11 @@ int			main(int argc, char **argv)
 	map->size_y = y_size;
 	// ############ MAP INITIALIZATION #############
 
+	t_vec3 eye	= vec3(0.5, 0.5, -0.5);
+	t_vec3 tar	= vec3(0.0, 0.0, 1.0);
+	t_vec3 up	= vec3(0.0, 1.0, 0.0);
 
-	t_mat4 *test_view = look_at();
+	t_mat4 *test_view = look_at(eye, tar, up);
 	t_map *trans_map = transform_map(test_view, map);
 	print_map(trans_map);
 

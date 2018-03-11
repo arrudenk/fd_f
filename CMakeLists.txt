@@ -4,7 +4,7 @@ project(fd_f)
 set(CMAKE_C_STANDARD 99)
 
 IF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-    set(MLX -lft -lmlx -lXext -lX11)
+    set(MLX -lft -lmlx -lXext -lX11 -lm)
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
@@ -13,7 +13,7 @@ IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -lmlx -framework OpenGL -framework AppKit -lm")
     link_directories(${PROJECT_SOURCE_DIR}/libft)
     include_directories(${PROJECT_SOURCE_DIR}/libft)
-    target_link_libraries(fd_f -lft)
+    target_link_libraries(fd_f -lft -lm)
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 

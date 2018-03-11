@@ -42,12 +42,13 @@ t_vec3			*new_vec3(double x, double y, double z);
 t_vec4			*new_vec4(double x, double y, double z, double w);
 t_vec3			vec3(double x, double y, double z);
 t_vec4			vec4(double x, double y, double z, double w);
-double			dot_product_v3(t_vec3 v1, t_vec3 v2);
-t_vec3			cross_product_v3(t_vec3 v1, t_vec3 v2);
+double			dot_vec3(t_vec3 v1, t_vec3 v2);
+t_vec3			cross_vec3(t_vec3 v1, t_vec3 v2);
 t_vec3			*vector_matrix_product(t_vec3 *v, t_mat3* m);
+t_vec3			subtract_vec3(t_vec3 v1, t_vec3 v2);
 t_mat3			*new_mat3();
 t_mat4			*new_mat4();
-t_mat4			*look_at();
+t_mat4			*look_at(t_vec3 eye, t_vec3 target, t_vec3 up);
 t_vec3			normalize_vec3(t_vec3 v);
 
 

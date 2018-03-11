@@ -123,23 +123,74 @@ t_vec4		*vec4_mat4_multiply(t_vec4 *v, t_mat4* m)
 
 t_vec3 normalize_vec3(t_vec3 v)
 {
-	/*t_vec3 *t;
+	t_vec3 t;
 	double l;
 
-	t = ft_memalloc(sizeof(t_vec3));
-	l = sqrt(v->x*v->x + v->x*v->x + )*/
+	//t = ft_memalloc(sizeof(t_vec3));
+	l = sqrt(v.x*v.x + v.y*v.y + v.z*v.z);
+
+	t.x = v.x/l;
+	t.y = v.y/l;
+	t.z = v.z/l;
+
+	return (t);
 
 }
 
+double dot_vec3(t_vec3 v1, t_vec3 v2)
+{
+	double r = v1.x*v2.x + v1.y*v2.y + v1.z*v2.z;
+
+	return (r);
+}
+
+t_vec3 cross_vec3(t_vec3 v1, t_vec3 v2)
+{
+	t_vec3 r;
+
+	r.x = v1.y*v2.z - v2.y*v1.z;
+	r.y = v1.x*v2.z - v2.x*v1.z;
+	r.z = v1.x*v2.y - v2.x*v1.y;
+
+	return r;
+}
+
+t_vec3 subtract_vec3(t_vec3 v1, t_vec3 v2)
+{
+	t_vec3 r;
+
+	r.x = v1.x - v2.x;
+	r.y = v1.y - v2.y;
+	r.z = v1.z - v2.z;
+
+	return (r);
+}
+
 // Hardcoded view matrix, gonna be replaced soon
-t_mat4 *look_at() {
+t_mat4 *look_at(t_vec3 eye, t_vec3 target, t_vec3 up) {
 	t_mat4 *m;
 	m = ft_memalloc(sizeof(t_mat4));
 
-	m->x_axis = vec4(-0.948683, -0.0953463, 0.301511, 0);
-	m->y_axis = vec4(0, 0.953463, 0.301511, 0);
-	m->z_axis = vec4(-0.316228, 0.286039, -0.904534, 0);
-	m->w_axis = vec4(0.316228, -0.286039, -0.753778, 1);
+	t_vec3 f;
+	t_vec3 s;
+	t_vec3 u;
+
+	double t_x;
+	double t_y;
+	double t_z;
+
+	f = normalize_vec3(subtract_vec3(target, eye));
+	s = normalize_vec3(cross_vec3(f, up));
+	u = cross_vec3(s, f);
+
+	t_x = dot_vec3(s, eye);
+	t_y = dot_vec3(u, eye);
+	t_z = dot_vec3(f, eye);
+
+	m->x_axis = vec4(s.x, u.x, f.x, 0);
+	m->y_axis = vec4(s.y, u.y, f.y, 0);
+	m->z_axis = vec4(s.z, u.z, f.z, 0);
+	m->w_axis = vec4(t_x, t_y, t_z, 1);
 
 	return (m);
 }
