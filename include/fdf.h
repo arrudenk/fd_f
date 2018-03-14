@@ -14,7 +14,7 @@
 # define FDF_H
 
 # include <mlx.h>
-//# include <fcntl.h>
+# include <fcntl.h>
 # include <math.h>
 # include <stdlib.h>
 # include "libft.h"

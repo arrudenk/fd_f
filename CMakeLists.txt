@@ -9,11 +9,9 @@ ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     # Tbma, do you OSX stuff here
-
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -lmlx -framework OpenGL -framework AppKit -lm")
     link_directories(${PROJECT_SOURCE_DIR}/libft)
     include_directories(${PROJECT_SOURCE_DIR}/libft)
-    target_link_libraries(fd_f -lft -lm)
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 
@@ -21,6 +19,9 @@ set(SOURCE_FILES src/main.c include/fdf.h
         src/draw.c src/vector_math.c include/vector_math.h)
 
 add_executable(fd_f ${SOURCE_FILES})
+IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    target_link_libraries(fd_f -lft -lm)
+ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 IF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     target_link_libraries(fd_f ${MLX})
