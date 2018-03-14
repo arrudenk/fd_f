@@ -1,6 +1,15 @@
-//
-// Created by vovchik on 09.03.18.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vector_math.h                                       :+:      :+:    :+:  */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/14 15:10:08 by arrudenk          #+#    #+#             */
+/*   Updated: 2018/03/14 15:10:08 by arrudenk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #ifndef FD_F_MATH_H
 #define FD_F_MATH_H
@@ -55,4 +64,4 @@ t_vec3			normalize_vec3(t_vec3 v);
 t_vec3			*vec3_mat3_multiply(t_vec3 *v, t_mat3* m);
 t_vec4			*vec4_mat4_multiply(t_vec4 *v, t_mat4* m);
 
-#endif //FD_F_MATH_H
+#endif

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vector_math.c                                       :+:      :+:    :+:  */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/14 15:09:44 by arrudenk          #+#    #+#             */
+/*   Updated: 2018/03/14 15:10:24 by arrudenk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/vector_math.h"
 
 t_vec3		*new_vec3(double x, double y, double z)
@@ -99,26 +111,26 @@ t_vec4		*vec4_mat4_multiply(t_vec4 *v, t_mat4* m)
 	result = ft_memalloc(sizeof(t_mat4));
 
 	result->x = v->x * m->x_axis.x +
-			   v->y * m->y_axis.x +
-			   v->z * m->z_axis.x +
-			   v->w * m->w_axis.x;
+				v->y * m->y_axis.x +
+				v->z * m->z_axis.x +
+				v->w * m->w_axis.x;
 
 	result->y = v->x * m->x_axis.y +
-			   v->y * m->y_axis.y +
-			   v->z * m->z_axis.y +
-			   v->w * m->w_axis.y;
+				v->y * m->y_axis.y +
+				v->z * m->z_axis.y +
+				v->w * m->w_axis.y;
 
 	result->z = v->x * m->x_axis.z +
-			   v->y * m->y_axis.z +
-			   v->z * m->z_axis.z +
-			   v->w * m->w_axis.z;
+				v->y * m->y_axis.z +
+				v->z * m->z_axis.z +
+				v->w * m->w_axis.z;
 
 	result->w = v->x * m->x_axis.w +
-			   v->y * m->y_axis.w +
-			   v->z * m->z_axis.w +
-			   v->w * m->w_axis.w;
+				v->y * m->y_axis.w +
+				v->z * m->z_axis.w +
+				v->w * m->w_axis.w;
 
-	return result;
+	return (result);
 }
 
 t_vec3 normalize_vec3(t_vec3 v)
@@ -134,7 +146,6 @@ t_vec3 normalize_vec3(t_vec3 v)
 	t.z = v.z/l;
 
 	return (t);
-
 }
 
 double dot_vec3(t_vec3 v1, t_vec3 v2)
