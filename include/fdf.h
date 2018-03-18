@@ -35,8 +35,8 @@ typedef	struct	s_mlx
 typedef	struct	s_map
 {
 	t_vec4	***data;
-	int		size_x;
-	int		size_y;
+	size_t	size_x;
+	size_t	size_y;
 }				t_map;
 
 void			draw_line(t_mlx *map, double x1, double y1, double x2, double y2, int color);
@@ -47,7 +47,9 @@ void			draw_map(t_mlx *mlx, t_map *map);
 int				hook_keydown(int key);
 
 t_mlx			*init_mlx(void);
-t_map			*init_map();
+t_map			*init_map(void);
+int				fl_parther(t_map *map);
+
 
 void			print_vec3(t_vec3 *v);
 void			print_vec4(t_vec4 *v);

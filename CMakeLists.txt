@@ -16,7 +16,7 @@ ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 
 set(SOURCE_FILES src/main.c include/fdf.h
-        src/draw.c src/vector_math.c include/vector_math.h)
+        src/draw.c src/vector_math.c include/vector_math.h src/i_init.c)
 
 add_executable(fd_f ${SOURCE_FILES})
 IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")

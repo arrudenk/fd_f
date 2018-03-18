@@ -14,55 +14,14 @@
 
 int			main(int argc, char **argv)
 {
-	int		fd;
-	char	*line;
 	t_vec3	*pix;
 	t_mlx	*mlx;
 	t_map	*map;
-	int		i;
-	int		j;
-	int		x_size;
-	int		y_size;
 	t_vec4		***mapa;
-	char		**cols;
 
-	i = 0;
-	x_size = 0;
-	y_size = 0;
 	mlx = init_mlx();
 	map = init_map();
-	fd = open("../maps/test1", O_RDONLY);
-
-	while (get_next_line(fd, &line))
-	{
-		x_size++;
-	}
-	close(fd);
-	ft_strdel(&line);
-	map->data = ft_memalloc(sizeof(t_vec4 *) * x_size);
-	fd = open("../maps/test2", O_RDONLY);
-	while (get_next_line(fd, &line))
-	{
-		j = 0;
-
-		cols = ft_strsplit(line, ' ');
-		while (cols[y_size])
-			y_size++;
-		map->data[i] = ft_memalloc(sizeof(t_vec4 *) * y_size);
-		while (cols[j])
-		{
-			double fetched_x = i * STEP;
-			double fetched_y = j * STEP;
-			double fetched_z = ft_atoi(cols[j]);
-			double fetched_w = 1;
-
-			map->data[i][j] = new_vec4(fetched_x, fetched_z, fetched_y, fetched_w);
-			j++;
-		}
-		i++;
-	}
-	map->size_x = x_size;
-	map->size_y = y_size;
+	fl_parther(map);
 	// ############ MAP INITIALIZATION #############
 
 	t_vec3 eye	= vec3(0.5, 0.5, -0.5);
@@ -79,11 +38,6 @@ int			main(int argc, char **argv)
 	return (0);
 }
 
-void		read_map()
-{
-
-}
-
 int			hook_keydown(int key)
 {
 	if (key == 65307 || key == 53)
@@ -91,23 +45,6 @@ int			hook_keydown(int key)
 	return (0);
 }
 
-t_mlx		*init_mlx(void)
-{
-	t_mlx	*mlx;
-
-	mlx = (t_mlx *)ft_memalloc(sizeof(t_mlx));
-	mlx->mlx = mlx_init();
-	mlx->win = mlx_new_window(mlx->mlx, WIDTH, HEIGHT, "Hello MLX");
-	return (mlx);
-}
-
-t_map		*init_map()
-{
-	t_map *map;
-
-	map = (t_map *)ft_memalloc(sizeof(t_map));
-	return map;
-}
 
 void		print_vec3(t_vec3 *v)
 {
