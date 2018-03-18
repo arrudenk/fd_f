@@ -32,6 +32,12 @@ typedef struct	s_vec4
 	double	w;
 }				t_vec4;
 
+typedef struct	s_point
+{
+	t_vec4		*pos;
+	t_vec3		*col;
+}				t_point;
+
 typedef struct	s_mat3
 {
 	t_vec3 x_axis;
@@ -47,6 +53,7 @@ typedef struct	s_mat4
 	t_vec4 w_axis;
 }				t_mat4;
 
+t_vec3			*new_color(char *point);
 t_vec3			*new_vec3(double x, double y, double z);
 t_vec4			*new_vec4(double x, double y, double z, double w);
 t_vec3			vec3(double x, double y, double z);

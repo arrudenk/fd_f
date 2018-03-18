@@ -16,12 +16,13 @@ int			main(int argc, char **argv)
 {
 	t_vec3	*pix;
 	t_mlx	*mlx;
-	t_map	*map;
-	t_vec4		***mapa;
+	t_model	*map;
+	t_vec4	***mapa;
+	char	*file = "../maps/test2";
 
 	mlx = init_mlx();
 	map = init_map();
-	fl_parther(map);
+	get_map(map, file);
 	// ############ MAP INITIALIZATION #############
 
 	t_vec3 eye	= vec3(0.5, 0.5, -0.5);
@@ -29,7 +30,7 @@ int			main(int argc, char **argv)
 	t_vec3 up	= vec3(0.0, 1.0, 0.0);
 
 	t_mat4 *test_view = look_at(eye, tar, up);
-	t_map *trans_map = transform_map(test_view, map);
+	t_model *trans_map = transform_map(test_view, map);
 	print_map(trans_map);
 
 	draw_map(mlx, trans_map);
@@ -70,7 +71,7 @@ void		print_vec4(t_vec4 *v)
 	ft_putchar('\n');
 }
 
-void		print_map(t_map *map)
+void		print_map(t_model *map)
 {
 	for (int i=0; i < map->size_x; i++)
 	{
@@ -81,9 +82,9 @@ void		print_map(t_map *map)
 	}
 }
 
-t_map		*transform_map(t_mat4 *matrix, t_map *map)
+t_model		*transform_map(t_mat4 *matrix, t_model *map)
 {
-	t_map *transformed_map;
+	t_model *transformed_map;
 	transformed_map = init_map();
 
 	transformed_map->data = ft_memalloc(sizeof(t_vec4 *) * map->size_x);

@@ -120,7 +120,7 @@ void draw_line_v(t_mlx *mlx, double x1, double y1, double x2, double y2, int col
 }
 
 // Raw version of draw map, that just draws lines along X and Y
-void draw_map(t_mlx* mlx, t_map *map)
+void draw_map(t_mlx* mlx, t_model *map)
 {
 	for (int i=0; i < map->size_x; i++)
 	{

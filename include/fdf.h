@@ -32,30 +32,32 @@ typedef	struct	s_mlx
 	void	*win;
 }				t_mlx;
 
-typedef	struct	s_map
+typedef	struct	s_model
 {
 	t_vec4	***data;
 	size_t	size_x;
 	size_t	size_y;
-}				t_map;
+}				t_model;
 
 void			draw_line(t_mlx *map, double x1, double y1, double x2, double y2, int color);
 void			draw_line_h(t_mlx *map, double x1, double y1, double x2, double y2, int color);
 void			draw_line_v(t_mlx *map, double x1, double y1, double x2, double y2, int color);
-void			draw_map(t_mlx *mlx, t_map *map);
+void			draw_map(t_mlx *mlx, t_model *map);
+
+int				ft_atoi_hex(char *s);
 
 int				hook_keydown(int key);
 
 t_mlx			*init_mlx(void);
-t_map			*init_map(void);
-int				fl_parther(t_map *map);
+t_model			*init_map(void);
+int				get_map(t_model *model, char *file);
 
 
 void			print_vec3(t_vec3 *v);
 void			print_vec4(t_vec4 *v);
-void			print_map(t_map *map);
+void			print_map(t_model *map);
 
-t_map			*transform_map(t_mat4 *matrix, t_map *map);
+t_model			*transform_map(t_mat4 *matrix, t_model *map);
 
 
 
