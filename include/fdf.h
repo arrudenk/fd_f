@@ -42,7 +42,8 @@ typedef	struct	s_model
 void			draw_line(t_mlx *map, double x1, double y1, double x2, double y2, int color);
 void			draw_line_h(t_mlx *map, double x1, double y1, double x2, double y2, int color);
 void			draw_line_v(t_mlx *map, double x1, double y1, double x2, double y2, int color);
-void			draw_map(t_mlx *mlx, t_model *map);
+void			draw_model(t_mlx *mlx, t_model *map);
+void			draw_origin(t_mlx *mlx, t_mat4 *view_matrix);
 
 int				ft_atoi_hex(char *s);
 

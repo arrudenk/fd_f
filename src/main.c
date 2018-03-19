@@ -33,7 +33,8 @@ int			main(int argc, char **argv)
 	t_model *trans_map = transform_map(test_view, map);
 	print_map(trans_map);
 
-	draw_map(mlx, trans_map);
+	draw_model(mlx, trans_map);
+	draw_origin(mlx, test_view);
 	mlx_key_hook(mlx->win, hook_keydown, NULL);
 	mlx_loop(mlx->mlx);
 	return (0);

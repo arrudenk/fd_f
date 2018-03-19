@@ -120,33 +120,58 @@ void draw_line_v(t_mlx *mlx, double x1, double y1, double x2, double y2, int col
 }
 
 // Raw version of draw map, that just draws lines along X and Y
-void draw_map(t_mlx* mlx, t_model *map)
+void draw_model(t_mlx* mlx, t_model *model)
 {
-	for (int i=0; i < map->size_x; i++)
+	for (int i=0; i < model->size_x; i++)
 	{
-		for (int j=0; j < map->size_y-1; j++)
+		for (int j=0; j < model->size_y-1; j++)
 		{
 			draw_line(mlx,
-					  map->data[i][j]->x + WIDTH/2,
-					  map->data[i][j]->y + HEIGHT/2,
-					  map->data[i][j+1]->x + WIDTH/2,
-					  map->data[i][j+1]->y + HEIGHT/2,
+					  model->data[i][j]->x + WIDTH/2,
+					  model->data[i][j]->y + HEIGHT/2,
+					  model->data[i][j+1]->x + WIDTH/2,
+					  model->data[i][j+1]->y + HEIGHT/2,
 					  VIOLET);
 		}
 	}
 
-	for (int k=0; k < map->size_y; k++)
+	for (int k=0; k < model->size_y; k++)
 	{
-		for (int l=0; l < map->size_x-1; l++)
+		for (int l=0; l < model->size_x-1; l++)
 		{
 			draw_line(mlx,
-					  map->data[l][k]->x + WIDTH/2,
-					  map->data[l][k]->y + HEIGHT/2,
-					  map->data[l+1][k]->x + WIDTH/2,
-					  map->data[l+1][k]->y + HEIGHT/2,
+					  model->data[l][k]->x + WIDTH/2,
+					  model->data[l][k]->y + HEIGHT/2,
+					  model->data[l+1][k]->x + WIDTH/2,
+					  model->data[l+1][k]->y + HEIGHT/2,
 					  VIOLET);
 		}
 	}
+}
+
+void draw_origin(t_mlx *mlx, t_mat4 *view_matrix)
+{
+	t_vec4 x = vec4(view_matrix->x_axis.x * 80,
+					view_matrix->x_axis.y * 80,
+					view_matrix->x_axis.z * 80,
+					1);
+	t_vec4 y = vec4(view_matrix->y_axis.x * 80,
+					view_matrix->y_axis.y * 80,
+					view_matrix->y_axis.z * 80,
+					1);
+	t_vec4 z = vec4(view_matrix->z_axis.x * 80,
+					view_matrix->z_axis.y * 80,
+					view_matrix->z_axis.z * 80,
+					1);
+
+	t_vec4 o = vec4(view_matrix->w_axis.x,
+					view_matrix->w_axis.y,
+					view_matrix->w_axis.z,
+					1);
+
+	draw_line(mlx, o.x + WIDTH/2, o.y + HEIGHT/2, x.x + WIDTH/2, x.y + HEIGHT/2, 0xFF0000);
+	draw_line(mlx, o.x + WIDTH/2, o.y + HEIGHT/2, y.x + WIDTH/2, y.y + HEIGHT/2, 0x00FF00);
+	draw_line(mlx, o.x + WIDTH/2, o.y + HEIGHT/2, z.x + WIDTH/2, z.y + HEIGHT/2, 0x0000FF);
 }
 
 
