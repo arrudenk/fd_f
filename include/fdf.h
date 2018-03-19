@@ -34,15 +34,15 @@ typedef	struct	s_mlx
 
 typedef	struct	s_model
 {
-	t_vec4	***data;
+	t_point	***data;
 	size_t	size_x;
 	size_t	size_y;
 }				t_model;
 
-void			draw_line(t_mlx *map, double x1, double y1, double x2, double y2, int color);
-void			draw_line_h(t_mlx *map, double x1, double y1, double x2, double y2, int color);
-void			draw_line_v(t_mlx *map, double x1, double y1, double x2, double y2, int color);
-void			draw_model(t_mlx *mlx, t_model *map);
+void			draw_line(t_mlx *mlx, double x1, double y1, double x2, double y2, int color);
+void			draw_line_h(t_mlx *mlx, double x1, double y1, double x2, double y2, int color);
+void			draw_line_v(t_mlx *mlx, double x1, double y1, double x2, double y2, int color);
+void			draw_model(t_mlx *mlx, t_model *model);
 void			draw_origin(t_mlx *mlx, t_mat4 *view_matrix);
 
 int				ft_atoi_hex(char *s);
@@ -50,15 +50,16 @@ int				ft_atoi_hex(char *s);
 int				hook_keydown(int key);
 
 t_mlx			*init_mlx(void);
-t_model			*init_map(void);
+t_model			*init_model(void);
 int				get_map(t_model *model, char *file);
+t_model			*copy_model(t_model *src);
 
 
 void			print_vec3(t_vec3 *v);
 void			print_vec4(t_vec4 *v);
-void			print_map(t_model *map);
+void			print_model(t_model *map);
 
-t_model			*transform_map(t_mat4 *matrix, t_model *map);
+t_model			*transform_model(t_mat4 *matrix, t_model *map);
 
 
 

@@ -22,7 +22,6 @@ int		get_map(t_model *model, char *file)
 	char	**cols;
 	int		i;
 	int		j;
-	t_point	*point;
 
 	x_size = 0;
 	y_size = 0;
@@ -34,7 +33,7 @@ int		get_map(t_model *model, char *file)
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
-	model->data = ft_memalloc(sizeof(t_vec4 *) * x_size);
+	model->data = ft_memalloc(sizeof(t_point *) * x_size);
 	fd = open(file, O_RDONLY);
 	while (get_next_line(fd, &line))
 	{
@@ -44,17 +43,16 @@ int		get_map(t_model *model, char *file)
 		{
 			y_size++;
 		}
-		model->data[i] = ft_memalloc(sizeof(t_vec4 *) * y_size);
+		model->data[i] = ft_memalloc(sizeof(t_point *) * y_size);
 		while (cols[j])
 		{
-			point = ft_memalloc(sizeof(t_point));
 			double fetched_x = i * STEP;
 			double fetched_y = j * STEP;
 			double fetched_z = ft_atoi(cols[j]) * STEP;
 			double fetched_w = 1;
-			point->pos = new_vec4(fetched_x, fetched_z, fetched_y, fetched_w);
-			point->rgb = new_color(cols[j]);
-			model->data[i][j] = new_vec4(fetched_x, fetched_z, fetched_y, fetched_w);
+			model->data[i][j] = ft_memalloc(sizeof(t_point));
+			model->data[i][j]->rgb = new_color(cols[j]);
+			model->data[i][j]->pos = new_vec4(fetched_x, fetched_z, fetched_y, fetched_w);
 			j++;
 		}
 		i++;
@@ -101,7 +99,7 @@ t_mlx	*init_mlx(void)
 	return (mlx);
 }
 
-t_model	*init_map()
+t_model	*init_model()
 {
 	t_model *map;
 

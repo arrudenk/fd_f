@@ -127,10 +127,10 @@ void draw_model(t_mlx* mlx, t_model *model)
 		for (int j=0; j < model->size_y-1; j++)
 		{
 			draw_line(mlx,
-					  model->data[i][j]->x + WIDTH/2,
-					  model->data[i][j]->y + HEIGHT/2,
-					  model->data[i][j+1]->x + WIDTH/2,
-					  model->data[i][j+1]->y + HEIGHT/2,
+					  model->data[i][j]->pos->x + WIDTH/2,
+					  model->data[i][j]->pos->y + HEIGHT/2,
+					  model->data[i][j+1]->pos->x + WIDTH/2,
+					  model->data[i][j+1]->pos->y + HEIGHT/2,
 					  VIOLET);
 		}
 	}
@@ -140,10 +140,10 @@ void draw_model(t_mlx* mlx, t_model *model)
 		for (int l=0; l < model->size_x-1; l++)
 		{
 			draw_line(mlx,
-					  model->data[l][k]->x + WIDTH/2,
-					  model->data[l][k]->y + HEIGHT/2,
-					  model->data[l+1][k]->x + WIDTH/2,
-					  model->data[l+1][k]->y + HEIGHT/2,
+					  model->data[l][k]->pos->x + WIDTH/2,
+					  model->data[l][k]->pos->y + HEIGHT/2,
+					  model->data[l+1][k]->pos->x + WIDTH/2,
+					  model->data[l+1][k]->pos->y + HEIGHT/2,
 					  VIOLET);
 		}
 	}

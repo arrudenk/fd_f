@@ -108,7 +108,7 @@ t_vec3		*vec3_mat3_multiply(t_vec3 *v, t_mat3* m)
 t_vec4		*vec4_mat4_multiply(t_vec4 *v, t_mat4* m)
 {
 	t_vec4 *result;
-	result = ft_memalloc(sizeof(t_mat4));
+	result = ft_memalloc(sizeof(t_vec4));
 
 	result->x = v->x * m->x_axis.x +
 				v->y * m->y_axis.x +

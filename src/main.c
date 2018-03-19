@@ -16,13 +16,13 @@ int			main(int argc, char **argv)
 {
 	t_vec3	*pix;
 	t_mlx	*mlx;
-	t_model	*map;
+	t_model	*model;
 	t_vec4	***mapa;
 	char	*file = "../maps/pyramid";
 
 	mlx = init_mlx();
-	map = init_map();
-	get_map(map, file);
+	model = init_model();
+	get_map(model, file);
 	// ############ MAP INITIALIZATION #############
 
 	t_vec3 eye	= vec3(0.5, 0.5, -0.5);
@@ -30,10 +30,9 @@ int			main(int argc, char **argv)
 	t_vec3 up	= vec3(0.0, 1.0, 0.0);
 
 	t_mat4 *test_view = look_at(eye, tar, up);
-	t_model *trans_map = transform_map(test_view, map);
-	print_map(trans_map);
+	t_model *trans_model = transform_model(test_view, model);
 
-	draw_model(mlx, trans_map);
+	draw_model(mlx, trans_model);
 	draw_origin(mlx, test_view);
 	mlx_key_hook(mlx->win, hook_keydown, NULL);
 	mlx_loop(mlx->mlx);
@@ -72,34 +71,58 @@ void		print_vec4(t_vec4 *v)
 	ft_putchar('\n');
 }
 
-void		print_map(t_model *map)
+void		print_model(t_model *model)
 {
-	for (int i=0; i < map->size_x; i++)
+	for (int i=0; i < model->size_x; i++)
 	{
-		for (int j=0; j < map->size_y; j++)
+		for (int j=0; j < model->size_y; j++)
 		{
-			print_vec4(map->data[i][j]);
+			print_vec4(model->data[i][j]->pos);
 		}
 	}
 }
 
-t_model		*transform_map(t_mat4 *matrix, t_model *map)
+t_model		*copy_model(t_model *src)
 {
-	t_model *transformed_map;
-	transformed_map = init_map();
+	t_model *new_model;
+	new_model = init_model();
 
-	transformed_map->data = ft_memalloc(sizeof(t_vec4 *) * map->size_x);
-	for (int i=0; i < map->size_x; i++)
+	int i;
+	int j;
+
+	i = -1;
+	new_model->data = ft_memalloc(sizeof(t_point *) * src->size_x);
+	while (++i < src->size_x)
 	{
-		transformed_map->data[i] = ft_memalloc(sizeof(t_vec4 *) * map->size_y);
-		for (int j=0; j < map->size_y; j++)
+		j = -1;
+		new_model->data[i] = ft_memalloc(sizeof(t_point *) * src->size_y);
+		while (++j < src->size_y)
 		{
-			transformed_map->data[i][j] = vec4_mat4_multiply(map->data[i][j], matrix);
+			new_model->data[i][j] = ft_memalloc(sizeof(t_point));
+			ft_memcpy((void*) new_model->data[i][j], (void*) src->data[i][j], sizeof(t_point));
 		}
 	}
 
-	transformed_map->size_x = map->size_x;
-	transformed_map->size_y = map->size_y;
+	return (new_model);
+}
 
-	return (transformed_map);
+t_model		*transform_model(t_mat4 *matrix, t_model *model)
+{
+	t_model *new_model = copy_model(model);
+
+	new_model->data = ft_memalloc(sizeof(t_point *) * model->size_x);
+	for (int i=0; i < model->size_x; i++)
+	{
+		new_model->data[i] = ft_memalloc(sizeof(t_point *) * model->size_y);
+		for (int j=0; j < model->size_y; j++)
+		{
+			new_model->data[i][j] = ft_memalloc(sizeof(t_point));
+			new_model->data[i][j]->pos = vec4_mat4_multiply(model->data[i][j]->pos, matrix);
+		}
+	}
+
+	new_model->size_x = model->size_x;
+	new_model->size_y = model->size_y;
+
+	return (new_model);
 }
