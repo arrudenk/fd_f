@@ -15,6 +15,7 @@
 int		get_map(t_model *model, char *file)
 {
 	int		fd;
+	int		fd2;
 	size_t	x_size;
 	size_t	y_size;
 	char	*line;
@@ -26,14 +27,12 @@ int		get_map(t_model *model, char *file)
 	x_size = 0;
 	y_size = 0;
 	i = 0;
-	fd = open(file, O_RDONLY);
-	while (get_next_line(fd, &line))
+	fd2 = open(file, O_RDONLY);
+	while (get_next_line(fd2, &line))
 	{
 		x_size++;
 		ft_strdel(&line);
 	}
-	close(fd);
-	fd = NULL;
 	ft_strdel(&line);
 	model->data = ft_memalloc(sizeof(t_vec4 *) * x_size);
 	fd = open(file, O_RDONLY);
@@ -51,10 +50,10 @@ int		get_map(t_model *model, char *file)
 			point = ft_memalloc(sizeof(t_point));
 			double fetched_x = i * STEP;
 			double fetched_y = j * STEP;
-			double fetched_z = ft_atoi(cols[j]);
+			double fetched_z = ft_atoi(cols[j]) * STEP;
 			double fetched_w = 1;
 			point->pos = new_vec4(fetched_x, fetched_z, fetched_y, fetched_w);
-			point->col = new_color(cols[j]);
+			point->rgb = new_color(cols[j]);
 			model->data[i][j] = new_vec4(fetched_x, fetched_z, fetched_y, fetched_w);
 			j++;
 		}

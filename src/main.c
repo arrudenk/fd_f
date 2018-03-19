@@ -18,7 +18,7 @@ int			main(int argc, char **argv)
 	t_mlx	*mlx;
 	t_model	*map;
 	t_vec4	***mapa;
-	char	*file = "../maps/test2";
+	char	*file = "../maps/pyramid";
 
 	mlx = init_mlx();
 	map = init_map();

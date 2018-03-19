@@ -35,7 +35,7 @@ typedef struct	s_vec4
 typedef struct	s_point
 {
 	t_vec4		*pos;
-	t_vec3		*col;
+	t_vec3		*rgb;
 }				t_point;
 
 typedef struct	s_mat3

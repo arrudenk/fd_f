@@ -20,11 +20,11 @@
 # include "libft.h"
 # include "vector_math.h"
 
-#define VIOLET 0xA800DB
+# define VIOLET 0xA800DB
 
-#define WIDTH 640
-#define HEIGHT 480
-#define STEP 25
+# define WIDTH 640
+# define HEIGHT 480
+# define STEP 10
 
 typedef	struct	s_mlx
 {
