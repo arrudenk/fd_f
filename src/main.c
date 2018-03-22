@@ -6,7 +6,7 @@
 /*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:01:25 by arrudenk          #+#    #+#             */
-/*   Updated: 2018/03/14 15:10:10 by arrudenk         ###   ########.fr       */
+/*   Updated: 2018/03/22 15:26:16 by arrudenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,40 @@ int			main(int argc, char **argv)
 	get_map(model, file);
 	// ############ MAP INITIALIZATION #############
 
-	t_vec3 eye	= vec3(0.5, 0.5, -0.5);
+	t_vec3 eye	= vec3(1.0, 0.5, -1.0);
 	t_vec3 tar	= vec3(0.0, 0.0, 1.0);
 	t_vec3 up	= vec3(0.0, 1.0, 0.0);
 
 	t_mat4 *test_view = look_at(eye, tar, up);
 	t_model *trans_model = transform_model(test_view, model);
 
+	t_fdf fdf;
+	fdf.model = trans_model;
+	fdf.mlx = mlx;
+	fdf.cam = test_view;
 	draw_model(mlx, trans_model);
 	draw_origin(mlx, test_view);
-	mlx_key_hook(mlx->win, hook_keydown, NULL);
+	mlx_clear_window(mlx->mlx, mlx->win);
+
+	mlx_hook(mlx->win,2,5, hook_keydown, &fdf);
 	mlx_loop(mlx->mlx);
 	return (0);
 }
 
-int			hook_keydown(int key)
+int			hook_keydown(int key, t_fdf *fdf)
 {
 	if (key == 65307 || key == 53)
+	{
 		exit(1);
+	}
+	if (key == 123 || key == 124)// <-...->
+	{
+		y_rotate_key(key, fdf);
+	}
+	if (key == 126 || key == 125)// ^...v
+	{
+		x_rotate_key(key, fdf);
+	}
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:01:42 by arrudenk          #+#    #+#             */
-/*   Updated: 2018/03/14 15:09:06 by arrudenk         ###   ########.fr       */
+/*   Updated: 2018/03/22 15:10:40 by arrudenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@
 
 # define VIOLET 0xA800DB
 
-# define WIDTH 640
-# define HEIGHT 480
+# define WIDTH 1280
+# define HEIGHT 720
 # define STEP 10
+# define RADIANE (180 / 3.14)
 
 typedef	struct	s_mlx
 {
@@ -39,6 +40,13 @@ typedef	struct	s_model
 	size_t	size_y;
 }				t_model;
 
+typedef	struct	s_fdf
+{
+	t_model		*model;
+	t_mlx		*mlx;
+	t_mat4		*cam;
+}				t_fdf;
+
 void			draw_line(t_mlx *mlx, double x1, double y1, double x2, double y2, int color);
 void			draw_line_h(t_mlx *mlx, double x1, double y1, double x2, double y2, int color);
 void			draw_line_v(t_mlx *mlx, double x1, double y1, double x2, double y2, int color);
@@ -47,7 +55,7 @@ void			draw_origin(t_mlx *mlx, t_mat4 *view_matrix);
 
 int				ft_atoi_hex(char *s);
 
-int				hook_keydown(int key);
+int			hook_keydown(int key, t_fdf *fdf);
 
 t_mlx			*init_mlx(void);
 t_model			*init_model(void);
@@ -61,6 +69,10 @@ void			print_model(t_model *map);
 
 t_model			*transform_model(t_mat4 *matrix, t_model *map);
 
+void		x_rotate_key(int key, t_fdf *fdf);
+void		y_rotate_key(int key, t_fdf *fdf);
+void		rotate_Z(t_mlx *mlx, t_model *model);
+void		back_rotate_Z(t_mlx *mlx, t_model *model);
 
 
 #endif

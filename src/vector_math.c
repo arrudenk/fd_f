@@ -6,7 +6,7 @@
 /*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 15:09:44 by arrudenk          #+#    #+#             */
-/*   Updated: 2018/03/14 15:10:24 by arrudenk         ###   ########.fr       */
+/*   Updated: 2018/03/22 11:23:48 by arrudenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ t_vec3 normalize_vec3(t_vec3 v)
 
 double dot_vec3(t_vec3 v1, t_vec3 v2)
 {
-	double r = v1.x*v2.x + v1.y*v2.y + v1.z*v2.z;
+	double r = v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
 
 	return (r);
 }
@@ -159,11 +159,11 @@ t_vec3 cross_vec3(t_vec3 v1, t_vec3 v2)
 {
 	t_vec3 r;
 
-	r.x = v1.y*v2.z - v2.y*v1.z;
-	r.y = v1.x*v2.z - v2.x*v1.z;
-	r.z = v1.x*v2.y - v2.x*v1.y;
+	r.x = v1.y * v2.z - v2.y * v1.z;
+	r.y = v1.x * v2.z - v2.x * v1.z;
+	r.z = v1.x * v2.y - v2.x * v1.y;
 
-	return r;
+	return (r);
 }
 
 t_vec3 subtract_vec3(t_vec3 v1, t_vec3 v2)
