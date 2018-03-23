@@ -25,12 +25,16 @@ int			main(int argc, char **argv)
 	get_map(model, file);
 	// ############ MAP INITIALIZATION #############
 
-	t_vec3 eye	= vec3(1.0, 0.5, -1.0);
-	t_vec3 tar	= vec3(0.0, 0.0, 1.0);
-	t_vec3 up	= vec3(0.0, 1.0, 0.0);
+    t_vec3 eye = vec3(0.0, 0.0, 0.0);
+    t_vec3 tar = vec3(1.0, 0.0, 0.0);
+    t_vec3 up = vec3(0.0, 1.0, 0.0);
 
-	t_mat4 *test_view = look_at(&eye, &tar, &up);
-	t_model *trans_model = transform_model(test_view, model);
+    t_mat4 *rotation_mat = create_x_rotation(60);
+
+    t_mat4 *test_view = look_at(&eye, &tar, &up);
+    t_model *trans_model = transform_model(rotation_mat, model);
+    trans_model = transform_model(test_view, trans_model);
+
 
 	t_fdf fdf;
 	fdf.model = trans_model;

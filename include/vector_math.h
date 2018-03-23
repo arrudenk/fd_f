@@ -17,9 +17,7 @@
 # include "libft.h"
 # include <math.h>
 
-# define RAD (180 / 3.14)
-# define ANGLE 0.5
-# define SINCOS (mod * ANGLE * RAD)
+# define RAD (1 / (180 / 3.14)) // It is 1 degree in terms of radians, so 60 degrees is 60 / (180/3.14)
 
 typedef struct	s_vec3
 {

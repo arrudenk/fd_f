@@ -75,6 +75,8 @@ void		x_rotate_key(int key, t_fdf *fdf)
 //		rotate_X((*fdf).mlx, (*fdf).model);
 		rotation = create_x_rotation(1);
 		model = transform_model(rotation, fdf->model);
+		//model = transform_model(fdf->cam, model);
+		print_model(model);
 		mlx_clear_window(fdf->mlx->mlx, fdf->mlx->win);
 		draw_origin(fdf->mlx, fdf->cam);
 		draw_model(fdf->mlx, model);
