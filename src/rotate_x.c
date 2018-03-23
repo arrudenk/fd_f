@@ -28,10 +28,10 @@ void		rotate_X(t_mlx *mlx, t_model *model)
 		j = -1;
 		while (++j < model->size_y)
 		{
-			rot->y = dat[i][j]->pos->y * cos(1.2 * RADIANE)
-					 + dat[i][j]->pos->z * sin(1.2 * RADIANE);
-			rot->z = dat[i][j]->pos->y * -sin(1.2 * RADIANE)
-					 + dat[i][j]->pos->z * cos(1.2 * RADIANE);
+			rot->y = dat[i][j]->pos->y * cos(0.00005 * RAD)
+					 + dat[i][j]->pos->z * sin(0.00005 * RAD);
+			rot->z = dat[i][j]->pos->y * -sin(0.00005 * RAD)
+					 + dat[i][j]->pos->z * cos(0.00005 * RAD);
 			dat[i][j]->pos->y = rot->y;
 			dat[i][j]->pos->z = rot->z;
 		}
@@ -56,10 +56,8 @@ void		back_rotate_X(t_mlx *mlx, t_model *model)
 		j = -1;
 		while (++j < model->size_y)
 		{
-			rot->y = dat[i][j]->pos->y * cos(1.2 * RADIANE)
-					 - dat[i][j]->pos->z * sin(1.2 * RADIANE);
-			rot->z = dat[i][j]->pos->y * sin(1.2 * RADIANE)
-					 + dat[i][j]->pos->z * cos(1.2 * RADIANE);
+			rot->y = dat[i][j]->pos->y * cos(1.2 * RAD) - dat[i][j]->pos->z * sin(1.2 * RAD);
+			rot->z = dat[i][j]->pos->y * sin(1.2 * RAD) + dat[i][j]->pos->z * cos(1.2 * RAD);
 			dat[i][j]->pos->y = rot->y;
 			dat[i][j]->pos->z = rot->z;
 		}
@@ -69,11 +67,19 @@ void		back_rotate_X(t_mlx *mlx, t_model *model)
 
 void		x_rotate_key(int key, t_fdf *fdf)
 {
-	if (key == 126)
+	t_mat4 *rotation;
+	t_model *model;
+	if (key == 126 || key == 65363)
 	{
-		rotate_X((*fdf).mlx, (*fdf).model);
+
+//		rotate_X((*fdf).mlx, (*fdf).model);
+		rotation = create_x_rotation(1);
+		model = transform_model(rotation, fdf->model);
+		mlx_clear_window(fdf->mlx->mlx, fdf->mlx->win);
+		draw_origin(fdf->mlx, fdf->cam);
+		draw_model(fdf->mlx, model);
 	}
-	if (key == 125)
+	else
 	{
 		back_rotate_X((*fdf).mlx, (*fdf).model);
 	}

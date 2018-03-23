@@ -28,10 +28,10 @@ void	rotate_Y(t_mlx *mlx, t_model *model)
 		j = -1;
 		while (++j < model->size_y)
 		{
-			rot->x = dat[i][j]->pos->x * cos(1.2 * RADIANE)
-					 + dat[i][j]->pos->z * sin(1.2 * RADIANE);
-			rot->z = -dat[i][j]->pos->x * sin(1.2 * RADIANE)
-					 + dat[i][j]->pos->z * cos(1.2 * RADIANE);
+			rot->x = dat[i][j]->pos->x * cos(1.2 * RAD)
+					 + dat[i][j]->pos->z * sin(1.2 * RAD);
+			rot->z = -dat[i][j]->pos->x * sin(1.2 * RAD)
+					 + dat[i][j]->pos->z * cos(1.2 * RAD);
 			dat[i][j]->pos->x = rot->x;
 			dat[i][j]->pos->z = rot->z;
 		}
@@ -55,10 +55,10 @@ void	back_rotate_Y(t_mlx *mlx, t_model *model)
 		j = -1;
 		while (++j < model->size_y)
 		{
-			rot->x = dat[i][j]->pos->x * cos(1.2 * RADIANE)
-					 - dat[i][j]->pos->z * sin(1.2 * RADIANE);
-			rot->z = dat[i][j]->pos->x * sin(1.2 * RADIANE)
-					 + dat[i][j]->pos->z * cos(1.2 * RADIANE);
+			rot->x = dat[i][j]->pos->x * cos(1.2 * RAD)
+					 - dat[i][j]->pos->z * sin(1.2 * RAD);
+			rot->z = dat[i][j]->pos->x * sin(1.2 * RAD)
+					 + dat[i][j]->pos->z * cos(1.2 * RAD);
 			dat[i][j]->pos->x = rot->x;
 			dat[i][j]->pos->z = rot->z;
 		}

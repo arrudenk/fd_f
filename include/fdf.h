@@ -25,7 +25,7 @@
 # define WIDTH 1280
 # define HEIGHT 720
 # define STEP 10
-# define RADIANE (180 / 3.14)
+
 
 typedef	struct	s_mlx
 {
@@ -52,6 +52,8 @@ void			draw_line_h(t_mlx *mlx, double x1, double y1, double x2, double y2, int c
 void			draw_line_v(t_mlx *mlx, double x1, double y1, double x2, double y2, int color);
 void			draw_model(t_mlx *mlx, t_model *model);
 void			draw_origin(t_mlx *mlx, t_mat4 *view_matrix);
+
+void			update(t_mat4 *camera, t_model *model);
 
 int				ft_atoi_hex(char *s);
 

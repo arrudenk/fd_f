@@ -29,7 +29,7 @@ int			main(int argc, char **argv)
 	t_vec3 tar	= vec3(0.0, 0.0, 1.0);
 	t_vec3 up	= vec3(0.0, 1.0, 0.0);
 
-	t_mat4 *test_view = look_at(eye, tar, up);
+	t_mat4 *test_view = look_at(&eye, &tar, &up);
 	t_model *trans_model = transform_model(test_view, model);
 
 	t_fdf fdf;
@@ -38,7 +38,7 @@ int			main(int argc, char **argv)
 	fdf.cam = test_view;
 	draw_model(mlx, trans_model);
 	draw_origin(mlx, test_view);
-	mlx_clear_window(mlx->mlx, mlx->win);
+	//mlx_clear_window(mlx->mlx, mlx->win);
 
 	mlx_hook(mlx->win,2,5, hook_keydown, &fdf);
 	mlx_loop(mlx->mlx);
@@ -51,9 +51,9 @@ int			hook_keydown(int key, t_fdf *fdf)
 	{
 		exit(1);
 	}
-	if (key == 123 || key == 124)// <-...->
+	if (key == 123 || key == 124 || key == 65363 || key == 65361)// <-...->
 	{
-		y_rotate_key(key, fdf);
+		x_rotate_key(key, fdf);
 	}
 	if (key == 126 || key == 125)// ^...v
 	{
