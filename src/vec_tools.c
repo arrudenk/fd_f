@@ -19,12 +19,11 @@ t_vec3	*normalize_vec3(t_vec3 *v)
 	double	l;
 
 	r = ft_memalloc(sizeof(t_vec3));
+	l = sqrt(v->x * v->x + v->y * v->y + v->z * v->z);
 
-	l = sqrt(v->x*v->x + v->y*v->y + v->z*v->z);
-
-	r->x = v->x/l;
-	r->y = v->y/l;
-	r->z = v->z/l;
+	r->x = v->x / l;
+	r->y = v->y / l;
+	r->z = v->z / l;
 
 	return (r);
 }

@@ -6,7 +6,7 @@
 /*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:20:11 by arrudenk          #+#    #+#             */
-/*   Updated: 2018/03/27 15:27:38 by arrudenk         ###   ########.fr       */
+/*   Updated: 2018/03/27 15:40:18 by arrudenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ t_model		*copy_model(t_model *src)
 		while (++j < src->size_y)
 		{
 			new_model->data[i][j] = ft_memalloc(sizeof(t_point));
-			ft_memcpy((void*) new_model->data[i][j], (void*) src->data[i][j], sizeof(t_point));
+			ft_memcpy((void*) new_model->data[i][j], (void*) src->data[i][j]
+					, sizeof(t_point));
 		}
 	}
 
@@ -67,13 +68,12 @@ t_model		*transform_model(t_mat4 *matrix, t_model *model)
 		while (++j < model->size_y)
 		{
 			new_model->data[i][j] = ft_memalloc(sizeof(t_point));
-			new_model->data[i][j]->pos = vec4_mat4_multiply(model->data[i][j]->pos, matrix);
+			new_model->data[i][j]->pos
+					= vec4_mat4_multiply(model->data[i][j]->pos, matrix);
 		}
 	}
-
 	new_model->size_x = model->size_x;
 	new_model->size_y = model->size_y;
-
 	return (new_model);
 }
 

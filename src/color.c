@@ -20,7 +20,7 @@ t_vec3	*new_color(char *point)
 	int		i;
 
 	i = -1;
-	col = ft_strchr(point, 'x');					//find 'x' and back string shifted to "х"
+	col = ft_strchr(point, 'x');
 	if (col == NULL)
 	{
 		color = new_vec3(0, 0, 0);
@@ -30,7 +30,7 @@ t_vec3	*new_color(char *point)
 	while (++i < 3)
 	{
 		color_buff[i] =  ft_strnew(sizeof(char) * 2);
-		ft_strncpy(color_buff[i], col, 2);				//man strncpy
+		ft_strncpy(color_buff[i], col, 2);
 		col +=2;
 	}
 	color = new_vec3(ft_atoi_hex(color_buff[0])

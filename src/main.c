@@ -6,7 +6,7 @@
 /*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:01:25 by arrudenk          #+#    #+#             */
-/*   Updated: 2018/03/27 14:39:03 by arrudenk         ###   ########.fr       */
+/*   Updated: 2018/03/27 17:53:23 by arrudenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ int			main(int argc, char **argv)
 	mlx = init_mlx();
 	model = init_model();
 	get_model(model, file);
-	// ############ MAP INITIALIZATION #############
-
 	t_vec3 eye = vec3(0.5, 0.0, 0.0);
 	t_vec3 tar = vec3(1.0, 0.0, 0.0);
 	t_vec3 up = vec3(0.0, 1.0, 0.0);

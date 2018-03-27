@@ -6,7 +6,7 @@
 /*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:01:42 by arrudenk          #+#    #+#             */
-/*   Updated: 2018/03/27 15:34:46 by arrudenk         ###   ########.fr       */
+/*   Updated: 2018/03/27 18:04:46 by arrudenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,15 @@
 # define W 1280
 # define H 720
 # define STEP 10
-
+//TODO: struct for image
+typedef struct		s_image
+{
+	void			*image;
+	char			*ptr;
+	int				bpp;
+	int				stride;
+	int				endian;
+}					t_image;
 
 typedef	struct	s_draw
 {
@@ -58,11 +66,12 @@ typedef	struct	s_fdf
 	t_model		*model;
 	t_mlx		*mlx;
 	t_mat4		*cam;
+	t_image		*img;
 }				t_fdf;
 
 void			draw_line(t_mlx *mlx, t_draw info);
-void			draw_h(t_mlx *mlx, t_draw info);
-void			draw_v(t_mlx *mlx, t_draw info);
+void			draw_h(t_mlx *mlx, t_draw i);
+void			draw_v(t_mlx *mlx, t_draw i);
 void			draw_model(t_mlx *mlx, t_model *model);
 void			draw_origin(t_mlx *mlx, t_mat4 *view_matrix);
 t_draw			ddddc(double x1, double y1, double x2, double y2, int color);
