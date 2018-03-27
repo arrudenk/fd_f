@@ -36,7 +36,7 @@ t_vec4		quick_math(t_vec4 axis, t_mat4 *m1, t_mat4 *m2)
 
 	return (axis);
 }
-
+//TODO: del this or use
 t_mat4	*mat4_mat4_multiply(t_mat4 *m1, t_mat4 *m2)
 {
 	t_mat4 *r;

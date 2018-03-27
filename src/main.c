@@ -6,7 +6,7 @@
 /*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:01:25 by arrudenk          #+#    #+#             */
-/*   Updated: 2018/03/27 14:37:55 by arrudenk         ###   ########.fr       */
+/*   Updated: 2018/03/27 14:39:03 by arrudenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int			hook_keydown(int key, t_fdf *fdf)
 	return (0);
 }
 
-
+//TODO: del this or use
 void		print_vec3(t_vec3 *v)
 {
 	ft_putstr("vec3: ");

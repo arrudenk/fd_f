@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../include/vector_math.h"
-
+//TODO: del this or use
 t_mat3		*new_mat3()
 {
 	t_mat3 *m;
@@ -22,7 +22,7 @@ t_mat3		*new_mat3()
 	m->z_axis = vec3(0, 0, 1);
 	return (m);
 }
-
+//TODO: del this or use
 t_mat4		*new_mat4()
 {
 	t_mat4 *m;
@@ -34,7 +34,7 @@ t_mat4		*new_mat4()
 	m->w_axis = vec4(0, 0, 0, 1);
 	return (m);
 }
-
+//TODO: del this or use
 t_vec3		*vec3_mat3_multiply(t_vec3 *v, t_mat3* m)
 {
 	t_vec3 *r;

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../include/vector_math.h"
-
+//TODO: del this or use
 t_mat4 *create_x_rotation(double mod)
 {
 	t_mat4 *r;
@@ -23,7 +23,7 @@ t_mat4 *create_x_rotation(double mod)
 	r->w_axis = vec4(0, 0, 0, 1);
 	return (r);
 }
-
+//TODO: del this or use
 t_mat4 *create_y_rotation(double mod)
 {
 	t_mat4 *r;
@@ -35,7 +35,7 @@ t_mat4 *create_y_rotation(double mod)
 	r->w_axis = vec4(0, 0, 0, 1);
 	return (r);
 }
-
+//TODO: del this or use
 t_mat4 *create_z_rotation(double mod)
 {
 	t_mat4 *r;
