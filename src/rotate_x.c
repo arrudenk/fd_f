@@ -6,7 +6,7 @@
 /*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 11:25:46 by arrudenk          #+#    #+#             */
-/*   Updated: 2018/03/22 15:12:09 by arrudenk         ###   ########.fr       */
+/*   Updated: 2018/03/26 16:54:15 by arrudenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void		rotate_X(t_mlx *mlx, t_model *model)
 		j = -1;
 		while (++j < model->size_y)
 		{
-			rot->y = dat[i][j]->pos->y * cos(0.00005 * RAD)
-					 + dat[i][j]->pos->z * sin(0.00005 * RAD);
-			rot->z = dat[i][j]->pos->y * -sin(0.00005 * RAD)
-					 + dat[i][j]->pos->z * cos(0.00005 * RAD);
+			rot->y = dat[i][j]->pos->y * cos(1.2 * RAD)
+					 + dat[i][j]->pos->z * sin(1.2 * RAD);
+			rot->z = dat[i][j]->pos->y * -sin(1.2 * RAD)
+					 + dat[i][j]->pos->z * cos(1.2 * RAD);
 			dat[i][j]->pos->y = rot->y;
 			dat[i][j]->pos->z = rot->z;
 		}
@@ -56,8 +56,10 @@ void		back_rotate_X(t_mlx *mlx, t_model *model)
 		j = -1;
 		while (++j < model->size_y)
 		{
-			rot->y = dat[i][j]->pos->y * cos(1.2 * RAD) - dat[i][j]->pos->z * sin(1.2 * RAD);
-			rot->z = dat[i][j]->pos->y * sin(1.2 * RAD) + dat[i][j]->pos->z * cos(1.2 * RAD);
+			rot->y = dat[i][j]->pos->y * cos(1.2 * RAD)
+					 - dat[i][j]->pos->z * sin(1.2 * RAD);
+			rot->z = dat[i][j]->pos->y * sin(1.2 * RAD)
+					 + dat[i][j]->pos->z * cos(1.2 * RAD);
 			dat[i][j]->pos->y = rot->y;
 			dat[i][j]->pos->z = rot->z;
 		}
@@ -69,13 +71,12 @@ void		x_rotate_key(int key, t_fdf *fdf)
 {
 	t_mat4 *rotation;
 	t_model *model;
-	if (key == 126 || key == 65363)
+	if (key == 124 || key == 65363)
 	{
-
 //		rotate_X((*fdf).mlx, (*fdf).model);
 		rotation = create_x_rotation(1);
 		model = transform_model(rotation, fdf->model);
-		//model = transform_model(fdf->cam, model);
+//		model = transform_model(fdf->cam, model);
 		print_model(model);
 		mlx_clear_window(fdf->mlx->mlx, fdf->mlx->win);
 		draw_origin(fdf->mlx, fdf->cam);

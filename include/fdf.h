@@ -6,7 +6,7 @@
 /*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:01:42 by arrudenk          #+#    #+#             */
-/*   Updated: 2018/03/22 15:10:40 by arrudenk         ###   ########.fr       */
+/*   Updated: 2018/03/27 14:19:56 by arrudenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,11 @@
 
 # define VIOLET 0xA800DB
 
-# define WIDTH 1280
-# define HEIGHT 720
+
+# define M_X(a, b) (model->data[a][b]->pos->x)
+# define M_Y(a, b) (model->data[a][b]->pos->y)
+# define W 1280
+# define H 720
 # define STEP 10
 
 
@@ -48,8 +51,8 @@ typedef	struct	s_fdf
 }				t_fdf;
 
 void			draw_line(t_mlx *mlx, double x1, double y1, double x2, double y2, int color);
-void			draw_line_h(t_mlx *mlx, double x1, double y1, double x2, double y2, int color);
-void			draw_line_v(t_mlx *mlx, double x1, double y1, double x2, double y2, int color);
+void			draw_h(t_mlx *mlx, double x1, double y1, double x2, double y2, int color);
+void			draw_v(t_mlx *mlx, double x1, double y1, double x2, double y2, int color);
 void			draw_model(t_mlx *mlx, t_model *model);
 void			draw_origin(t_mlx *mlx, t_mat4 *view_matrix);
 
@@ -61,7 +64,7 @@ int			hook_keydown(int key, t_fdf *fdf);
 
 t_mlx			*init_mlx(void);
 t_model			*init_model(void);
-int				get_map(t_model *model, char *file);
+int				get_model(t_model *model, char *file);
 t_model			*copy_model(t_model *src);
 
 

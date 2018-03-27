@@ -6,7 +6,7 @@
 /*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 12:08:27 by arrudenk          #+#    #+#             */
-/*   Updated: 2018/03/22 15:01:59 by arrudenk         ###   ########.fr       */
+/*   Updated: 2018/03/23 17:26:14 by arrudenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,11 @@ void	back_rotate_Y(t_mlx *mlx, t_model *model)
 
 void		y_rotate_key(int key, t_fdf *fdf)
 {
-	if (key == 124)
+	if (key == 126)
 	{
 		rotate_Y((*fdf).mlx, (*fdf).model);
 	}
-	if (key == 123)
+	if (key == 125)
 	{
 		back_rotate_Y((*fdf).mlx, (*fdf).model);
 	}
