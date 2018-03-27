@@ -20,7 +20,6 @@ t_vec3		*new_vec3(double x, double y, double z)
 	v->x = x;
 	v->y = y;
 	v->z = z;
-
 	return (v);
 }
 
@@ -33,7 +32,6 @@ t_vec4		*new_vec4(double x, double y, double z, double w)
 	v->y = y;
 	v->z = z;
 	v->w = w;
-
 	return (v);
 }
 
@@ -44,7 +42,6 @@ t_vec3		vec3(double x, double y, double z)
 	v.x = x;
 	v.y = y;
 	v.z = z;
-
 	return (v);
 }
 
@@ -56,6 +53,5 @@ t_vec4		vec4(double x, double y, double z, double w)
 	v.y = y;
 	v.z = z;
 	v.w = w;
-
 	return (v);
 }

@@ -12,7 +12,7 @@
 
 #include "../include/fdf.h"
 
-void		rotate_Z(t_mlx *mlx, t_model *model)
+void		rotate_z(t_mlx *mlx, t_model *model)
 {
 	int		i;
 	int		j;
@@ -39,7 +39,7 @@ void		rotate_Z(t_mlx *mlx, t_model *model)
 	draw_model(mlx, model);
 }
 
-void		back_rotate_Z(t_mlx *mlx, t_model *model)
+void		back_rotate_z(t_mlx *mlx, t_model *model)
 {
 	int		i;
 	int		j;

@@ -6,7 +6,7 @@
 /*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:01:42 by arrudenk          #+#    #+#             */
-/*   Updated: 2018/03/27 18:04:46 by arrudenk         ###   ########.fr       */
+/*   Updated: 2018/03/27 19:24:23 by arrudenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,23 @@
 # include "vector_math.h"
 
 # define VIOLET 0xA800DB
-
-
 # define M_X(a, b) (model->data[a][b]->pos->x)
 # define M_Y(a, b) (model->data[a][b]->pos->y)
+# define POS(a, b) (model->data[a][b]->pos)
 # define W 1280
 # define H 720
 # define STEP 10
+# define COLOR_MAGIC (i.colr)
+
 //TODO: struct for image
-typedef struct		s_image
+typedef struct	s_image
 {
 	void			*image;
 	char			*ptr;
 	int				bpp;
 	int				stride;
 	int				endian;
-}					t_image;
+}				t_image;
 
 typedef	struct	s_draw
 {
@@ -45,7 +46,6 @@ typedef	struct	s_draw
 	double	x2;
 	double	y2;
 	int		colr;
-
 }				t_draw;
 
 typedef	struct	s_mlx
@@ -69,35 +69,26 @@ typedef	struct	s_fdf
 	t_image		*img;
 }				t_fdf;
 
-void			draw_line(t_mlx *mlx, t_draw info);
-void			draw_h(t_mlx *mlx, t_draw i);
-void			draw_v(t_mlx *mlx, t_draw i);
+void			draw_line(t_mlx *mlx, t_draw info, int colr);
+void			draw_h(t_mlx *mlx, t_draw i, int colr);
+void			draw_v(t_mlx *mlx, t_draw i, int colr);
 void			draw_model(t_mlx *mlx, t_model *model);
 void			draw_origin(t_mlx *mlx, t_mat4 *view_matrix);
-t_draw			ddddc(double x1, double y1, double x2, double y2, int color);
-
+t_draw			ddddc(double x1, double y1, double x2, double y2);
 void			update(t_mat4 *camera, t_model *model);
-
 int				ft_atoi_hex(char *s);
-
-int			hook_keydown(int key, t_fdf *fdf);
-
+int				hook_keydown(int key, t_fdf *fdf);
 t_mlx			*init_mlx(void);
 t_model			*init_model(void);
 int				get_model(t_model *model, char *file);
 t_model			*copy_model(t_model *src);
-
-
 void			print_vec3(t_vec3 *v);
 void			print_vec4(t_vec4 *v);
 void			print_model(t_model *map);
-
 t_model			*transform_model(t_mat4 *matrix, t_model *map);
-
-void		x_rotate_key(int key, t_fdf *fdf);
-void		y_rotate_key(int key, t_fdf *fdf);
-void		rotate_Z(t_mlx *mlx, t_model *model);
-void		back_rotate_Z(t_mlx *mlx, t_model *model);
-
+void			x_rotate_key(int key, t_fdf *fdf);
+void			y_rotate_key(int key, t_fdf *fdf);
+void			rotate_z(t_mlx *mlx, t_model *model);
+void			back_rotate_z(t_mlx *mlx, t_model *model);
 
 #endif

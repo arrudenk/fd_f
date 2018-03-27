@@ -6,85 +6,67 @@
 /*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:10:14 by arrudenk          #+#    #+#             */
-/*   Updated: 2018/03/27 17:00:38 by arrudenk         ###   ########.fr       */
+/*   Updated: 2018/03/27 19:03:25 by arrudenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void	draw_line(t_mlx *mlx, t_draw info)
+void	draw_line(t_mlx *mlx, t_draw info, int colr)
 {
-	if (fabs(info.y2-info.y1) < fabs(info.x2-info.x1))
+	if (fabs(info.y2 - info.y1) < fabs(info.x2 - info.x1))
+	{
 		if (info.x1 < info.x2)
-			draw_h(mlx, ddddc(info.x1, info.y1, info.x2, info.y2, info.colr));
+			draw_h(mlx, ddddc(info.x1, info.y1, info.x2, info.y2), colr);
 		else
-			draw_h(mlx, ddddc(info.x2, info.y2, info.x1, info.y1, info.colr));
+			draw_h(mlx, ddddc(info.x2, info.y2, info.x1, info.y1), colr);
+	}
 	else
+	{
 		if (info.y1 < info.y2)
-			draw_v(mlx, ddddc(info.x1, info.y1, info.x2, info.y2, info.colr));
+			draw_v(mlx, ddddc(info.x1, info.y1, info.x2, info.y2), colr);
 		else
-			draw_v(mlx, ddddc(info.x2, info.y2, info.x1, info.y1, info.colr));
+			draw_v(mlx, ddddc(info.x2, info.y2, info.x1, info.y1), colr);
+	}
 }
-//																			6
-void	draw_h(t_mlx *mlx, t_draw i)
+
+void	draw_h(t_mlx *mlx, t_draw i, int colr)
 {
 	double y;
-	double startX;
-	double endX;
-/*	error = 0;
-	delta_error = (fabs(x2-x1) / fabs(y2-y1));*/
-	startX = i.x1;
-	endX = i.x2;
-	while (startX < endX)
+	double start_x;
+	double end_y;
+
+	start_x = i.x1;
+	end_y = i.x2;
+	while (start_x < end_y)
 	{
-		y = ((i.y2 - i.y1)/(i.x2 - i.x1)) * (startX - i.x1) + i.y1;
-		mlx_pixel_put(mlx->mlx, mlx->win, startX, y, i.colr);
-/*		error += delta_error;
-		if (error >= 0.5)
-		{
-			y += direction_y;
-			error--;
-		}*/
-		startX++;
+		y = ((i.y2 - i.y1) / (i.x2 - i.x1)) * (start_x - i.x1) + i.y1;
+		mlx_pixel_put(mlx->mlx, mlx->win, start_x, y, i.colr);
+		start_x++;
 	}
 }
 
-void	draw_v(t_mlx *mlx, t_draw i)
+void	draw_v(t_mlx *mlx, t_draw i, int colr)
 {
 	double x;
-	double startY;
-	double endY;
-//	double delta_error;
-/*	double error;
-	double direction_y;
-	direction_y = (y2-y1) > 0 ? 1 : -1;
-	error = 0;
-	delta_error = fabs(x2-x1)/fabs(y2-y1);
+	double start_y;
+	double end_y;
 
-
-	 Notice that we pass through Y coordinate
-	 and calculate X with respect to it*/
-	startY = i.y1;
-	endY = i.y2;
-	while (startY < endY)
+	start_y = i.y1;
+	end_y = i.y2;
+	while (start_y < end_y)
 	{
-		x = ((i.x2 - i.x1)/(i.y2 - i.y1)) * (startY - i.y1) + i.x1;
-		mlx_pixel_put(mlx->mlx, mlx->win, x, startY, i.colr);
-		startY++;
-/*		error += delta_error;
-		if (error >= 0.5)
-		{
-			y += direction_y;
-			error--;
-		}*/
+		x = ((i.x2 - i.x1) / (i.y2 - i.y1)) * (start_y - i.y1) + i.x1;
+		mlx_pixel_put(mlx->mlx, mlx->win, x, start_y, i.colr);
+		start_y++;
 	}
 }
 
-// Raw version of draw map, that just draws lines along X and Y
-void	draw_model(t_mlx* mlx, t_model *model)
+void	draw_model(t_mlx *mlx, t_model *model)
 {
 	int i;
 	int j;
+	int magic;
 
 	mlx_clear_window(mlx->mlx, mlx->win);
 	i = -1;
@@ -94,7 +76,7 @@ void	draw_model(t_mlx* mlx, t_model *model)
 		while (++j < model->size_y - 1)
 		{
 			draw_line(mlx, ddddc(M_X(i, j) + W / 2, M_Y(i, j) + H / 2
-					, M_X(i, j + 1) + W / 2, M_Y(i, j + 1) + H / 2, VIOLET));
+					, M_X(i, j + 1) + W / 2, M_Y(i, j + 1) + H / 2), VIOLET);
 		}
 	}
 	i = -1;
@@ -104,7 +86,7 @@ void	draw_model(t_mlx* mlx, t_model *model)
 		while (++j < model->size_x - 1)
 		{
 			draw_line(mlx, ddddc(M_X(j, i) + W / 2, M_Y(j, i) + H / 2
-					, M_X(j + 1, i) + W / 2, M_Y(j + 1, i) + H / 2, VIOLET));
+					, M_X(j + 1, i) + W / 2, M_Y(j + 1, i) + H / 2), VIOLET);
 		}
 	}
 }
@@ -124,10 +106,10 @@ void	draw_origin(t_mlx *mlx, t_mat4 *view_matrix)
 			, view_matrix->z_axis.z * 80, 1);
 	o = vec4(view_matrix->w_axis.x, view_matrix->w_axis.y
 			, view_matrix->w_axis.z, 1);
-	draw_line(mlx, ddddc(o.x + W / 2, o.y + H / 2, x.x + W / 2, x.y + H / 2
-			, 0xFF0000));
-	draw_line(mlx, ddddc(o.x + W / 2, o.y + H / 2, y.x + W / 2, y.y + H / 2
-			, 0x00FF00));
-	draw_line(mlx, ddddc(o.x + W / 2, o.y + H / 2, z.x + W / 2, z.y + H / 2
-			, 0x0000FF));
+	draw_line(mlx, ddddc(o.x + W / 2, o.y + H / 2, x.x + W / 2, x.y + H / 2)
+			, 0xFF0000);
+	draw_line(mlx, ddddc(o.x + W / 2, o.y + H / 2, y.x + W / 2, y.y + H / 2)
+			, 0x00FF00);
+	draw_line(mlx, ddddc(o.x + W / 2, o.y + H / 2, z.x + W / 2, z.y + H / 2)
+			, 0x0000FF);
 }
