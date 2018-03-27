@@ -6,7 +6,7 @@
 /*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:20:11 by arrudenk          #+#    #+#             */
-/*   Updated: 2018/03/26 17:30:44 by arrudenk         ###   ########.fr       */
+/*   Updated: 2018/03/27 15:27:38 by arrudenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,16 @@ t_model	*init_model()
 
 	map = (t_model *)ft_memalloc(sizeof(t_model));
 	return map;
+}
+
+t_draw	ddddc(double x1, double y1, double x2, double y2, int color)
+{
+	t_draw	info;
+
+	info.x1 = x1;
+	info.y1 = y1;
+	info.x2 = x2;
+	info.y2 = y2;
+	info.colr = color;
+	return (info);
 }
