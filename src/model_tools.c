@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   model_tools.c                                       :+:      :+:    :+:  */
-/*                                                    +:+ +:+         +:+     */
-/*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/26 17:20:11 by arrudenk          #+#    #+#             */
-/*   Updated: 2018/03/27 18:44:04 by arrudenk         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../include/fdf.h"
 
 void		print_model(t_model *model)
@@ -83,7 +71,7 @@ t_model		*init_model(void)
 	return (map);
 }
 
-t_draw		ddddc(double x1, double y1, double x2, double y2)
+t_draw		double4(double x1, double y1, double x2, double y2)
 {
 	t_draw	info;
 

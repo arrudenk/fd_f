@@ -6,7 +6,7 @@
 /*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:01:42 by arrudenk          #+#    #+#             */
-/*   Updated: 2018/03/29 17:14:22 by arrudenk         ###   ########.fr       */
+/*   Updated: 2018/03/29 17:19:53 by arrudenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void			draw_h(t_mlx *mlx, t_draw i, int colr);
 void			draw_v(t_mlx *mlx, t_draw i, int colr);
 void			draw_model(t_mlx *mlx, t_model *model);
 void			draw_origin(t_mlx *mlx, t_mat4 *view_matrix);
-t_draw			ddddc(double x1, double y1, double x2, double y2);
+t_draw			double4(double x1, double y1, double x2, double y2);
 void			update(t_mat4 *camera, t_model *model);
 int				ft_atoi_hex(char *s);
 int				hook_keydown(int key, t_fdf *fdf);

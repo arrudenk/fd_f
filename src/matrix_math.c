@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   matrix_math.c                                       :+:      :+:    :+:  */
-/*                                                    +:+ +:+         +:+     */
-/*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/26 17:18:47 by arrudenk          #+#    #+#             */
-/*   Updated: 2018/03/28 11:47:49 by arrudenk         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../include/vector_math.h"
 
 t_vec4		quick_math(t_vec4 axis, t_mat4 *m1, t_vec4 *v)
@@ -29,8 +17,6 @@ t_vec4		quick_math(t_vec4 axis, t_mat4 *m1, t_vec4 *v)
 	axis.w = dot_vec4(m1w, v);
 	return (axis);
 }
-
-//TODO: del this or use
 
 t_mat4		*mat4_mat4_multiply(t_mat4 *m1, t_mat4 *m2)
 {

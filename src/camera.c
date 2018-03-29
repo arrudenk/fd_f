@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   camera.c                                            :+:      :+:    :+:  */
+/*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/26 17:14:51 by arrudenk          #+#    #+#             */
-/*   Updated: 2018/03/29 14:52:34 by arrudenk         ###   ########.fr       */
+/*   Created: 2018/03/29 18:21:15 by arrudenk          #+#    #+#             */
+/*   Updated: 2018/03/29 18:21:16 by arrudenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,11 @@ t_mat4	*look_at(t_vec3 *eye, t_vec3 *target, t_vec3 *up)
 	m->y_axis = vec4(u->x, u->y, u->z, 0);
 	m->z_axis = vec4(f->x, f->y, f->z, 0);
 	m->w_axis = vec4(0, 0, 0, 1);
-
 	r = new_mat4();
 	r->x_axis = vec4(1, 0, 0, 0);
 	r->y_axis = vec4(0, 1, 0, 0);
 	r->z_axis = vec4(0, 0, 1, 0);
-	r->w_axis = vec4(0, 0, 0, 1);
-
+	r->w_axis = vec4(-eye->x, -eye->y, -eye->z, 1);
 	m = mat4_mat4_multiply(r, m);
-
 	return (m);
 }
