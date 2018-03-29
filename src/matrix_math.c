@@ -6,7 +6,7 @@
 /*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:18:47 by arrudenk          #+#    #+#             */
-/*   Updated: 2018/03/27 18:32:00 by arrudenk         ###   ########.fr       */
+/*   Updated: 2018/03/28 11:47:49 by arrudenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,6 @@ t_vec4		quick_math(t_vec4 axis, t_mat4 *m1, t_vec4 *v)
 	axis.y = dot_vec4(m1y, v);
 	axis.z = dot_vec4(m1z, v);
 	axis.w = dot_vec4(m1w, v);
-	ft_memdel((void *)m1x);
-	ft_memdel((void *)m1y);
-	ft_memdel((void *)m1z);
-	ft_memdel((void *)m1w);
 	return (axis);
 }
 

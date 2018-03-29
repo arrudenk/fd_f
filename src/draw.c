@@ -6,7 +6,7 @@
 /*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:10:14 by arrudenk          #+#    #+#             */
-/*   Updated: 2018/03/27 19:03:25 by arrudenk         ###   ########.fr       */
+/*   Updated: 2018/03/29 16:10:31 by arrudenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ void	draw_h(t_mlx *mlx, t_draw i, int colr)
 	while (start_x < end_y)
 	{
 		y = ((i.y2 - i.y1) / (i.x2 - i.x1)) * (start_x - i.x1) + i.y1;
-		mlx_pixel_put(mlx->mlx, mlx->win, start_x, y, i.colr);
+		if (start_x > 0 && y > 0)
+			image_set_pixel(mlx, start_x, y, i.colr);
+		else
+			break ;
 		start_x++;
 	}
 }
@@ -57,7 +60,15 @@ void	draw_v(t_mlx *mlx, t_draw i, int colr)
 	while (start_y < end_y)
 	{
 		x = ((i.x2 - i.x1) / (i.y2 - i.y1)) * (start_y - i.y1) + i.x1;
-		mlx_pixel_put(mlx->mlx, mlx->win, x, start_y, i.colr);
+		if (start_y > 0 && x > 0)
+		{
+			image_set_pixel(mlx, x, start_y, i.colr);
+//			mlx_pixel_put(mlx->mlx, mlx->win, x, start_y, i.colr);
+		}
+		else
+		{
+			break ;
+		}
 		start_y++;
 	}
 }
@@ -69,6 +80,7 @@ void	draw_model(t_mlx *mlx, t_model *model)
 	int magic;
 
 	mlx_clear_window(mlx->mlx, mlx->win);
+	clear_image(mlx);
 	i = -1;
 	while (++i < model->size_x)
 	{
@@ -89,6 +101,8 @@ void	draw_model(t_mlx *mlx, t_model *model)
 					, M_X(j + 1, i) + W / 2, M_Y(j + 1, i) + H / 2), VIOLET);
 		}
 	}
+
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img->image, 0, 0);
 }
 
 void	draw_origin(t_mlx *mlx, t_mat4 *view_matrix)

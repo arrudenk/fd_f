@@ -12,22 +12,22 @@
 
 #include "../include/fdf.h"
 //TODO: add this to draw!!!
-void	image_set_pixel(t_fdf *fdf, int x, int y, int c)
+void	image_set_pixel(t_mlx *mlx, int x, int y, int c)
 {
-	*(int *)(fdf->img->ptr + ((x + y * W) * fdf->img->bpp)) = c;
+	*(int *)(mlx->img->ptr + ((x + y * W) * mlx->img->bpp)) = c;
 }
 
-void	clear_image(t_fdf *fdf)
+void	clear_image(t_mlx *mlx)
 {
 	int		i;
 
-	i = W * H * fdf->img->bpp;
+	i = W * H * mlx->img->bpp;
 	while (--i)
-		*(fdf->img->ptr + i) = 0;
-	*(fdf->img->ptr) = 0;
+		*(mlx->img->ptr + i) = 0;
+	*(mlx->img->ptr) = 0;
 }
 
-t_image	*new_image(t_fdf *fdf)
+t_image	*new_image(t_mlx *mlx)
 {
 	t_image	*img;
 
@@ -36,7 +36,7 @@ t_image	*new_image(t_fdf *fdf)
 		ft_putendl("error");
 		exit(1);
 	}
-	if (!(img->image = mlx_new_image(fdf->mlx, W, H)))
+	if (!(img->image = mlx_new_image(mlx->mlx, W, H)))
 	{
 		ft_putendl("error");
 		exit(1);

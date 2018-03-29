@@ -6,7 +6,7 @@
 /*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:01:42 by arrudenk          #+#    #+#             */
-/*   Updated: 2018/03/27 19:24:23 by arrudenk         ###   ########.fr       */
+/*   Updated: 2018/03/29 17:14:22 by arrudenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 # define FDF_H
 
 # include <mlx.h>
+
 # include <fcntl.h>
 # include <math.h>
 # include <stdlib.h>
+
 # include "libft.h"
 # include "vector_math.h"
+# include "keys.h"
 
 # define VIOLET 0xA800DB
 # define M_X(a, b) (model->data[a][b]->pos->x)
@@ -27,16 +30,15 @@
 # define W 1280
 # define H 720
 # define STEP 10
-# define COLOR_MAGIC (i.colr)
 
 //TODO: struct for image
 typedef struct	s_image
 {
-	void			*image;
-	char			*ptr;
-	int				bpp;
-	int				stride;
-	int				endian;
+	void	*image;
+	char	*ptr;
+	int		bpp;
+	int		stride;
+	int		endian;
 }				t_image;
 
 typedef	struct	s_draw
@@ -52,6 +54,7 @@ typedef	struct	s_mlx
 {
 	void	*mlx;
 	void	*win;
+	t_image	*img;
 }				t_mlx;
 
 typedef	struct	s_model
@@ -63,10 +66,9 @@ typedef	struct	s_model
 
 typedef	struct	s_fdf
 {
-	t_model		*model;
-	t_mlx		*mlx;
-	t_mat4		*cam;
-	t_image		*img;
+	t_model	*model;
+	t_mlx	*mlx;
+	t_mat4	*cam;
 }				t_fdf;
 
 void			draw_line(t_mlx *mlx, t_draw info, int colr);
@@ -88,7 +90,10 @@ void			print_model(t_model *map);
 t_model			*transform_model(t_mat4 *matrix, t_model *map);
 void			x_rotate_key(int key, t_fdf *fdf);
 void			y_rotate_key(int key, t_fdf *fdf);
-void			rotate_z(t_mlx *mlx, t_model *model);
-void			back_rotate_z(t_mlx *mlx, t_model *model);
+void			z_rotate_key(int key, t_fdf *fdf);
+
+void			image_set_pixel(t_mlx *mlx, int x, int y, int c);
+t_image			*new_image(t_mlx *mlx);
+void			clear_image(t_mlx *mlx);
 
 #endif

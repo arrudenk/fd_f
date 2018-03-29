@@ -6,7 +6,7 @@
 /*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:01:25 by arrudenk          #+#    #+#             */
-/*   Updated: 2018/03/27 19:08:26 by arrudenk         ###   ########.fr       */
+/*   Updated: 2018/03/29 16:19:10 by arrudenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int			main(int argc, char **argv)
 {
 	t_mlx	*mlx;
 	t_model	*model;
-	char	*file = "../maps/test6.fdf";
+	char	*file = "../maps/pyramid";
 
 	mlx = init_mlx();
 	model = init_model();
@@ -51,13 +51,17 @@ int			hook_keydown(int key, t_fdf *fdf)
 	{
 		exit(1);
 	}
-	if (key == 123 || key == 124 || key == 65363 || key == 65361)// <-...->
+	if (key == LEFT || key == RIGHT || key == 65363 || key == 65361)// <-...->
 	{
 		x_rotate_key(key, fdf);
 	}
-	if (key == 126 || key == 125)// ^...v
+	if (key == UP || key == DOWN)// ^...v
 	{
 		y_rotate_key(key, fdf);
+	}
+	if (key == MINUS || key == PLUS)
+	{
+		z_rotate_key(key, fdf);
 	}
 	return (0);
 }

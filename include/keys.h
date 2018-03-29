@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx.c                                               :+:      :+:    :+:  */
+/*   keys.h                                              :+:      :+:    :+:  */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/26 21:09:04 by arrudenk          #+#    #+#             */
-/*   Updated: 2018/03/26 22:09:58 by arrudenk         ###   ########.fr       */
+/*   Created: 2018/03/29 17:12:17 by arrudenk          #+#    #+#             */
+/*   Updated: 2018/03/29 17:13:48 by arrudenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
-
-t_mlx	*init_mlx(void)
-{
-	t_mlx	*mlx;
-
-	mlx = (t_mlx *)ft_memalloc(sizeof(t_mlx));
-	mlx->mlx = mlx_init();
-	mlx->win = mlx_new_window(mlx->mlx, W, H, "Hello MLX");
-	mlx->img = new_image(mlx);
-	return (mlx);
-}
+#ifndef FD_F_KEYS_H
+# define FD_F_KEYS_H
+# define UP 126
+# define DOWN 125
+# define RIGHT 124
+# define LEFT 123
+# define PLUS 78
+# define MINUS 69
+#endif

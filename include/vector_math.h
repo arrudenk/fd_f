@@ -6,7 +6,7 @@
 /*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 15:10:08 by arrudenk          #+#    #+#             */
-/*   Updated: 2018/03/27 19:25:50 by arrudenk         ###   ########.fr       */
+/*   Updated: 2018/03/29 14:06:26 by arrudenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 # define FD_F_MATH_H
 
 # include "libft.h"
+
 # include <math.h>
 
-# define RAD (5.2 / (180 / 3.14)) // It is 1 degree in terms of radians, so 60 degrees is 60 / (180/3.14)
+# define RAD (3.2 / (180 / 3.14)) // It is 1 degree in terms of radians, so 60 degrees is 60 / (180/3.14)
 
 typedef struct	s_vec3
 {
