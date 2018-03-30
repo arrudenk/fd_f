@@ -31,7 +31,6 @@
 # define H 720
 # define STEP 10
 
-//TODO: struct for image
 typedef struct	s_image
 {
 	void	*image;
@@ -96,4 +95,6 @@ void			image_set_pixel(t_mlx *mlx, int x, int y, int c);
 t_image			*new_image(t_mlx *mlx);
 void			clear_image(t_mlx *mlx);
 
+void			ft_free_2d(char **array);
+void			ft_free_3d(char ***array);
 #endif

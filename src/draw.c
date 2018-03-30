@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/30 00:36:22 by arrudenk          #+#    #+#             */
+/*   Updated: 2018/03/30 00:36:23 by arrudenk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/fdf.h"
 
 void	draw_line(t_mlx *mlx, t_draw info, int colr)
@@ -30,7 +42,7 @@ void	draw_h(t_mlx *mlx, t_draw i, int colr)
 	{
 		y = ((i.y2 - i.y1) / (i.x2 - i.x1)) * (start_x - i.x1) + i.y1;
 		if (start_x > 0 && y > 0)
-			image_set_pixel(mlx, start_x, y, colr);
+			image_set_pixel(mlx, start_x, y, i.colr);
 		else
 			break ;
 		start_x++;
@@ -50,7 +62,7 @@ void	draw_v(t_mlx *mlx, t_draw i, int colr)
 		x = ((i.x2 - i.x1) / (i.y2 - i.y1)) * (start_y - i.y1) + i.x1;
 		if (start_y > 0 && x > 0)
 		{
-			image_set_pixel(mlx, x, start_y, colr);
+			image_set_pixel(mlx, x, start_y, i.colr);
 		}
 		else
 		{
@@ -89,25 +101,25 @@ void	draw_model(t_mlx *mlx, t_model *model)
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img->image, 0, 0);
 }
 
-void	draw_origin(t_mlx *mlx, t_mat4 *view_matrix)
-{
-	t_vec4 x;
-	t_vec4 y;
-	t_vec4 z;
-	t_vec4 o;
-
-	x = vec4(view_matrix->x_axis.x * 80, view_matrix->x_axis.y * 80
-			, view_matrix->x_axis.z * 80, 1);
-	y = vec4(view_matrix->y_axis.x * 80, view_matrix->y_axis.y * 80
-			, view_matrix->y_axis.z * 80, 1);
-	z = vec4(view_matrix->z_axis.x * 80, view_matrix->z_axis.y * 80
-			, view_matrix->z_axis.z * 80, 1);
-	o = vec4(view_matrix->w_axis.x, view_matrix->w_axis.y
-			, view_matrix->w_axis.z, 1);
-	draw_line(mlx, double4(o.x + W / 2, o.y + H / 2, x.x + W / 2, x.y + H / 2)
-			, 0xFF0000);
-	draw_line(mlx, double4(o.x + W / 2, o.y + H / 2, y.x + W / 2, y.y + H / 2)
-			, 0x00FF00);
-	draw_line(mlx, double4(o.x + W / 2, o.y + H / 2, z.x + W / 2, z.y + H / 2)
-			, 0x0000FF);
-}
+//void	draw_origin(t_mlx *mlx, t_mat4 *view_matrix)
+//{
+//	t_vec4 x;
+//	t_vec4 y;
+//	t_vec4 z;
+//	t_vec4 o;
+//
+//	x = vec4(view_matrix->x_axis.x * 80, view_matrix->x_axis.y * 80
+//			, view_matrix->x_axis.z * 80, 1);
+//	y = vec4(view_matrix->y_axis.x * 80, view_matrix->y_axis.y * 80
+//			, view_matrix->y_axis.z * 80, 1);
+//	z = vec4(view_matrix->z_axis.x * 80, view_matrix->z_axis.y * 80
+//			, view_matrix->z_axis.z * 80, 1);
+//	o = vec4(view_matrix->w_axis.x, view_matrix->w_axis.y
+//			, view_matrix->w_axis.z, 1);
+//	draw_line(mlx, double4(o.x + W / 2, o.y + H / 2, x.x + W / 2, x.y + H / 2)
+//			, 0xFF0000);
+//	draw_line(mlx, double4(o.x + W / 2, o.y + H / 2, y.x + W / 2, y.y + H / 2)
+//			, 0x00FF00);
+//	draw_line(mlx, double4(o.x + W / 2, o.y + H / 2, z.x + W / 2, z.y + H / 2)
+//			, 0x0000FF);
+//}

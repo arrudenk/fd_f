@@ -1,35 +1,54 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/30 00:36:40 by arrudenk          #+#    #+#             */
+/*   Updated: 2018/03/30 00:36:41 by arrudenk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/fdf.h"
+
+void		error(int error)
+{
+	if (error == 1)
+		ft_putendl("bad arguments");
+	if (error == 2)
+		ft_putendl("invalid map");
+	if (error == 3)
+		ft_putendl("");
+	if (error == 4)
+		ft_putendl("");
+	if (error == 5)
+		ft_putendl("");
+	exit(error);
+}
 
 int			main(int argc, char **argv)
 {
-	t_mlx	*mlx;
-	t_model	*model;
-	char	*file = "../maps/pyramid";
+	t_model		*model;
+	t_mat4		*rotation_mat;
+	t_model		*trans_model;
+	t_fdf		fdf;
 
-	mlx = init_mlx();
+	if (argc != 2)
+		error(1);
 	model = init_model();
-	get_model(model, file);
-	t_vec3 eye = vec3(0.5, 0.0, 0.0);
-	t_vec3 tar = vec3(1.0, 0.0, 0.0);
-	t_vec3 up = vec3(0.0, 1.0, 0.0);
+	fdf.cam = camera(vec3(0.5, 0.0, 0.0)
+					, vec3(1.0, 0.0, 0.0)
+					, vec3(0.0, 1.0, 0.0));
+	get_model(model, argv[1]);
+	rotation_mat = create_x_rotation(60);
+	trans_model = transform_model(rotation_mat, model);
+	fdf.model = transform_model(fdf.cam, trans_model);
+	fdf.mlx = init_mlx();
 
-	t_mat4 *rotation_mat = create_x_rotation(60);
-
-	t_mat4 *test_view = look_at(&eye, &tar, &up);
-	t_model *trans_model = transform_model(rotation_mat, model);
-	trans_model = transform_model(test_view, trans_model);
-
-
-	t_fdf fdf;
-	fdf.model = trans_model;
-	fdf.mlx = mlx;
-	fdf.cam = test_view;
-	draw_model(mlx, trans_model);
-	draw_origin(mlx, test_view);
-	//mlx_clear_window(mlx->mlx, mlx->win);
-
-	mlx_hook(mlx->win,2,5, hook_keydown, &fdf);
-	mlx_loop(mlx->mlx);
+	draw_model(fdf.mlx, fdf.model);
+	mlx_hook(fdf.mlx->win,2,5, hook_keydown, &fdf);
+	mlx_loop(fdf.mlx->mlx);
 	return (0);
 }
 
@@ -39,11 +58,11 @@ int			hook_keydown(int key, t_fdf *fdf)
 	{
 		exit(1);
 	}
-	if (key == LEFT || key == RIGHT || key == 65363 || key == 65361)// <-...->
+	if (key == LEFT || key == RIGHT || key == 65363 || key == 65361)
 	{
 		x_rotate_key(key, fdf);
 	}
-	if (key == UP || key == DOWN)// ^...v
+	if (key == UP || key == DOWN)
 	{
 		y_rotate_key(key, fdf);
 	}
@@ -52,29 +71,4 @@ int			hook_keydown(int key, t_fdf *fdf)
 		z_rotate_key(key, fdf);
 	}
 	return (0);
-}
-
-//TODO: del this or use
-void		print_vec3(t_vec3 *v)
-{
-	ft_putstr("vec3: ");
-	ft_putnbr(v->x);
-	ft_putstr(", ");
-	ft_putnbr(v->y);
-	ft_putstr(", ");
-	ft_putnbr(v->z);
-	ft_putchar('\n');
-}
-
-void		print_vec4(t_vec4 *v)
-{
-	ft_putstr("vec4: ");
-	ft_putnbr(v->x);
-	ft_putstr(", ");
-	ft_putnbr(v->y);
-	ft_putstr(", ");
-	ft_putnbr(v->z);
-	ft_putstr(", ");
-	ft_putnbr(v->w);
-	ft_putchar('\n');
 }

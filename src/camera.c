@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/vector_math.h"
+#include "../include/fdf.h"
 
 t_mat4	*look_at(t_vec3 *eye, t_vec3 *target, t_vec3 *up)
 {
@@ -33,6 +33,13 @@ t_mat4	*look_at(t_vec3 *eye, t_vec3 *target, t_vec3 *up)
 	r->y_axis = vec4(0, 1, 0, 0);
 	r->z_axis = vec4(0, 0, 1, 0);
 	r->w_axis = vec4(-eye->x, -eye->y, -eye->z, 1);
-	m = mat4_mat4_multiply(r, m);
-	return (m);
+	return (mat4_mat4_multiply(r, m));
+}
+
+t_mat4	*camera(t_vec3 eye, t_vec3 tar, t_vec3 up)
+{
+	t_mat4	*cam;
+
+	cam = look_at(&eye, &tar, &up);
+	return (cam);
 }

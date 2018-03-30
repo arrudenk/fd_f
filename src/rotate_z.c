@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate_z.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/30 00:37:54 by arrudenk          #+#    #+#             */
+/*   Updated: 2018/03/30 00:37:55 by arrudenk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/fdf.h"
 
 static void	rotate_z(t_mlx *mlx, t_model *model, int turn)
@@ -29,13 +41,12 @@ static void	rotate_z(t_mlx *mlx, t_model *model, int turn)
 
 void		z_rotate_key(int key, t_fdf *fdf)
 {
-	if (key == 69)
+	if (key == PLUS)
 	{
 		rotate_z((*fdf).mlx, (*fdf).model, 1);
 	}
-	if (key == 78)
+	if (key == MINUS)
 	{
 		rotate_z((*fdf).mlx, (*fdf).model, -1);
 	}
-	draw_origin((*fdf).mlx->mlx, (*fdf).cam);
 }

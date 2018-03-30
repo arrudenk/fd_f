@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate_y.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/30 00:37:49 by arrudenk          #+#    #+#             */
+/*   Updated: 2018/03/30 00:37:51 by arrudenk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/fdf.h"
 
 static void	rotate_y(t_mlx *mlx, t_model *model, int mod)
@@ -28,11 +40,11 @@ static void	rotate_y(t_mlx *mlx, t_model *model, int mod)
 
 void		y_rotate_key(int key, t_fdf *fdf)
 {
-	if (key == 126)
+	if (key == UP)
 	{
 		rotate_y((*fdf).mlx, (*fdf).model, 1);
 	}
-	if (key == 125)
+	if (key == DOWN)
 	{
 		rotate_y((*fdf).mlx, (*fdf).model, -1);
 	}

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate_x.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/30 00:37:38 by arrudenk          #+#    #+#             */
+/*   Updated: 2018/03/30 00:37:39 by arrudenk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/fdf.h"
 
 static void	rotate_x(t_mlx *mlx, t_model *model, int mod)
@@ -8,7 +20,6 @@ static void	rotate_x(t_mlx *mlx, t_model *model, int mod)
 	t_point	***dat;
 
 	i = -1;
-	j = -1;
 	rot = new_vec3(0, 0, 0);
 	dat = model->data;
 	while (++i < model->size_x)
@@ -29,7 +40,7 @@ static void	rotate_x(t_mlx *mlx, t_model *model, int mod)
 
 void		x_rotate_key(int key, t_fdf *fdf)
 {
-	if (key == 124 || key == 65363)
+	if (key == RIGHT || key == 65363)
 	{
 		rotate_x((*fdf).mlx, (*fdf).model, 1);
 	}
