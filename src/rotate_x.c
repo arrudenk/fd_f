@@ -27,10 +27,10 @@ static void	rotate_x(t_fdf fdf, int mod)
 		j = -1;
 		while (++j < fdf.model->size_y)
 		{
-			rot->y = dat[i][j]->pos->y * cos(mod * 1.2 * RAD) +
-					dat[i][j]->pos->z * sin(mod * 1.2 * RAD);
-			rot->z = dat[i][j]->pos->y * -sin(mod * 1.2 * RAD) +
-					dat[i][j]->pos->z * cos(mod * 1.2 * RAD);
+			rot->y = dat[i][j]->pos->y * cos(mod * RAD) +
+					dat[i][j]->pos->z * sin(mod * RAD);
+			rot->z = dat[i][j]->pos->y * -sin(mod * RAD)
+					 + dat[i][j]->pos->z * cos(mod * RAD);
 			dat[i][j]->pos->y = rot->y;
 			dat[i][j]->pos->z = rot->z;
 		}

@@ -90,6 +90,10 @@ t_model			*transform_model(t_mat4 *matrix, t_model *map);
 void			x_rotate_key(int key, t_fdf *fdf);
 void			y_rotate_key(int key, t_fdf *fdf);
 void			z_rotate_key(int key, t_fdf *fdf);
+void			z_height(t_fdf fdf, int key);
+t_mat4			*destroy_z();
+
+
 
 void			image_set_pixel(t_mlx *mlx, int x, int y, int c);
 t_image			*new_image(t_mlx *mlx);

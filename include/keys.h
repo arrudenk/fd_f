@@ -18,4 +18,9 @@
 # define LEFT 123
 # define PLUS 78
 # define MINUS 69
+# define MAC_RANDOM 15
+//UBUNTU
+# define U_ZERO 48
+# define U_ONE 49
+# define U_RANDOM 114
 #endif

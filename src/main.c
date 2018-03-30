@@ -33,14 +33,16 @@ int			main(int argc, char **argv)
 	t_mat4		*rotation_mat;
 	t_model		*trans_model;
 	t_fdf		fdf;
+	char		*file;
 
-	if (argc != 2)
-		error(1);
+	file = "../maps/pyramid";
+//	if (argc != 2)
+//		error(1);
 	model = init_model();
 	fdf.cam = camera(vec3(0.5, 0.0, 0.0)
 					, vec3(1.0, 0.0, 0.0)
 					, vec3(0.0, 1.0, 0.0));
-	get_model(model, argv[1]);
+	get_model(model, file);
 	rotation_mat = create_x_rotation(60);
 	trans_model = transform_model(rotation_mat, model);
 	fdf.model = transform_model(fdf.cam, trans_model);
@@ -63,7 +65,7 @@ int			hook_keydown(int key, t_fdf *fdf)
 	{
 		x_rotate_key(key, fdf);
 	}
-	if (key == UP || key == DOWN)
+	if (key == UP || key == DOWN || key == 65362 || key == 65364)
 	{
 		y_rotate_key(key, fdf);
 	}
@@ -71,12 +73,23 @@ int			hook_keydown(int key, t_fdf *fdf)
 	{
 		z_rotate_key(key, fdf);
 	}
-	if (key == 15)
+	if (key == U_ZERO || key == U_ONE)
+	{
+//		z_height((*fdf), key);
+		(*fdf).model = transform_model(destroy_z(), (*fdf).model);
+	}
+	if (key == MAC_RANDOM || key == U_RANDOM)
 	{
 		if ((*fdf).random == 1)
+		{
 			(*fdf).random = 0;
+			draw_model((*fdf).mlx, (*fdf).model, 0);
+		}
 		else
+		{
 			(*fdf).random = 1;
+			draw_model((*fdf).mlx, (*fdf).model, (*fdf).random);
+		}
 	}
 	return (0);
 }
