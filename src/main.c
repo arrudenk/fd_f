@@ -45,8 +45,9 @@ int			main(int argc, char **argv)
 	trans_model = transform_model(rotation_mat, model);
 	fdf.model = transform_model(fdf.cam, trans_model);
 	fdf.mlx = init_mlx();
+	fdf.random = 0;
 
-	draw_model(fdf.mlx, fdf.model);
+	draw_model(fdf.mlx, fdf.model, ran);
 	mlx_hook(fdf.mlx->win,2,5, hook_keydown, &fdf);
 	mlx_loop(fdf.mlx->mlx);
 	return (0);
@@ -69,6 +70,13 @@ int			hook_keydown(int key, t_fdf *fdf)
 	if (key == MINUS || key == PLUS)
 	{
 		z_rotate_key(key, fdf);
+	}
+	if (key == 15)
+	{
+		if ((*fdf).random == 1)
+			(*fdf).random = 0;
+		else
+			(*fdf).random = 1;
 	}
 	return (0);
 }

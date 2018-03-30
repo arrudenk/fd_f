@@ -31,6 +31,8 @@
 # define H 720
 # define STEP 10
 
+static int ran = 0;
+
 typedef struct	s_image
 {
 	void	*image;
@@ -68,12 +70,10 @@ typedef	struct	s_fdf
 	t_model	*model;
 	t_mlx	*mlx;
 	t_mat4	*cam;
+	int		random;
 }				t_fdf;
 
-void			draw_line(t_mlx *mlx, t_draw info, int colr);
-void			draw_h(t_mlx *mlx, t_draw i, int colr);
-void			draw_v(t_mlx *mlx, t_draw i, int colr);
-void			draw_model(t_mlx *mlx, t_model *model);
+void			draw_model(t_mlx *mlx, t_model *model, int random);
 void			draw_origin(t_mlx *mlx, t_mat4 *view_matrix);
 t_draw			double4(double x1, double y1, double x2, double y2);
 void			update(t_mat4 *camera, t_model *model);

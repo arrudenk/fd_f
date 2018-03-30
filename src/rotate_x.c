@@ -12,7 +12,7 @@
 
 #include "../include/fdf.h"
 
-static void	rotate_x(t_mlx *mlx, t_model *model, int mod)
+static void	rotate_x(t_fdf fdf, int mod)
 {
 	int		i;
 	int		j;
@@ -21,11 +21,11 @@ static void	rotate_x(t_mlx *mlx, t_model *model, int mod)
 
 	i = -1;
 	rot = new_vec3(0, 0, 0);
-	dat = model->data;
-	while (++i < model->size_x)
+	dat = fdf.model->data;
+	while (++i < fdf.model->size_x)
 	{
 		j = -1;
-		while (++j < model->size_y)
+		while (++j < fdf.model->size_y)
 		{
 			rot->y = dat[i][j]->pos->y * cos(mod * 1.2 * RAD) +
 					dat[i][j]->pos->z * sin(mod * 1.2 * RAD);
@@ -35,17 +35,17 @@ static void	rotate_x(t_mlx *mlx, t_model *model, int mod)
 			dat[i][j]->pos->z = rot->z;
 		}
 	}
-	draw_model(mlx, model);
+	draw_model(fdf.mlx, fdf.model, fdf.random);
 }
 
 void		x_rotate_key(int key, t_fdf *fdf)
 {
 	if (key == RIGHT || key == 65363)
 	{
-		rotate_x((*fdf).mlx, (*fdf).model, 1);
+		rotate_x(*fdf, 1);
 	}
 	else
 	{
-		rotate_x((*fdf).mlx, (*fdf).model, -1);
+		rotate_x(*fdf, -1);
 	}
 }
