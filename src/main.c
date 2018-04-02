@@ -35,7 +35,7 @@ int			main(int argc, char **argv)
 	t_fdf		fdf;
 	char		*file;
 
-	file = "../maps/pyramid";
+	file = "../maps/pyra.fdf";
 //	if (argc != 2)
 //		error(1);
 	model = init_model();
