@@ -11,39 +11,67 @@
 /* ************************************************************************** */
 
 #include "../include/vector_math.h"
+#include "../include/fdf.h"
 
-t_mat4	*create_x_rotation(double mod)
+t_mat4	create_x_rotation(double mod)
 {
-	t_mat4	*r;
+	t_mat4 r;
 
-	r = ft_memalloc(sizeof(t_mat4));
-	r->x_axis = vec4(1, 0, 0, 0);
-	r->y_axis = vec4(0, cos(mod * RAD), -sin(mod * RAD), 0);
-	r->z_axis = vec4(0, sin(mod * RAD), cos(mod * RAD), 0);
-	r->w_axis = vec4(0, 0, 0, 1);
+	r.x_axis = vec4(1, 0, 0, 0);
+	r.y_axis = vec4(0, cos(mod * RAD), -sin(mod * RAD), 0);
+	r.z_axis = vec4(0, sin(mod * RAD), cos(mod * RAD), 0);
+	r.w_axis = vec4(0, 0, 0, 1);
 	return (r);
 }
 
-t_mat4	*create_y_rotation(double mod)
+t_mat4	create_y_rotation(double mod)
 {
-	t_mat4	*r;
-
-	r = ft_memalloc(sizeof(t_mat4));
-	r->x_axis = vec4(cos(mod * RAD), 0, sin(mod * RAD), 0);
-	r->y_axis = vec4(0, 1, 0, 0);
-	r->z_axis = vec4(-sin(mod * RAD), 0, cos(mod * RAD), 0);
-	r->w_axis = vec4(0, 0, 0, 1);
+	t_mat4	r;
+	
+	r.x_axis = vec4(cos(mod * RAD), 0, sin(mod * RAD), 0);
+	r.y_axis = vec4(0, 1, 0, 0);
+	r.z_axis = vec4(-sin(mod * RAD), 0, cos(mod * RAD), 0);
+	r.w_axis = vec4(0, 0, 0, 1);
 	return (r);
 }
 
-t_mat4	*create_z_rotation(double mod)
+t_mat4	create_z_rotation(double mod)
 {
-	t_mat4	*r;
+	t_mat4	r;
+	
+	r.x_axis = vec4(cos(mod * RAD), -sin(mod * RAD), 0, 0);
+	r.y_axis = vec4(sin(mod * RAD), cos(mod * RAD), 0, 0);
+	r.z_axis = vec4(0, 0, 1, 0);
+	r.w_axis = vec4(0, 0, 0, 1);
+	return (r);
+}
 
-	r = ft_memalloc(sizeof(t_mat4));
-	r->x_axis = vec4(cos(mod * RAD), -sin(mod * RAD), 0, 0);
-	r->y_axis = vec4(sin(mod * RAD), cos(mod * RAD), 0, 0);
-	r->z_axis = vec4(0, 0, 1, 0);
-	r->w_axis = vec4(0, 0, 0, 1);
+t_mat4	rotation_around_centr(t_fdf fdf, int mod)
+{
+	t_mat4 r;
+	double	x;
+	double	y;
+
+
+	x = fdf.model->size_y / 2;
+	y = fdf.model->size_x / 2;
+	r = new_mat4();
+	r.z_axis.x = x;
+	r.z_axis.y = y;
+	return (r);
+}
+
+t_mat4	move_down(t_fdf fdf, int mod)
+{
+	t_mat4 r;
+	double	x;
+	double	y;
+
+
+	x = fdf.model->size_y / 2;
+	y = fdf.model->size_x / 2;
+	r = new_mat4();
+	r.x_axis.w = 2;
+	r.y_axis.w = 2;
 	return (r);
 }

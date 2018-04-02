@@ -30,12 +30,10 @@ void		error(int error)
 int			main(int argc, char **argv)
 {
 	t_model		*model;
-	t_mat4		*rotation_mat;
-	t_model		*trans_model;
 	t_fdf		fdf;
 	char		*file;
 
-	file = "../maps/pyra.fdf";
+	file = "../maps/pyramid";
 //	if (argc != 2)
 //		error(1);
 	model = init_model();
@@ -43,13 +41,11 @@ int			main(int argc, char **argv)
 					, vec3(1.0, 0.0, 0.0)
 					, vec3(0.0, 1.0, 0.0));
 	get_model(model, file);
-	rotation_mat = create_x_rotation(60);
-	trans_model = transform_model(rotation_mat, model);
-	fdf.model = transform_model(fdf.cam, trans_model);
+	fdf.model = transform_model(fdf.cam, model);
 	fdf.mlx = init_mlx();
-	fdf.random = 0;
+	fdf.colr = VIOLET;
 
-	draw_model(fdf.mlx, fdf.model, ran);
+	draw_model(fdf);
 	mlx_hook(fdf.mlx->win,2,5, hook_keydown, &fdf);
 	mlx_loop(fdf.mlx->mlx);
 	return (0);
@@ -63,7 +59,7 @@ int			hook_keydown(int key, t_fdf *fdf)
 	}
 	if (key == LEFT || key == RIGHT || key == 65363 || key == 65361)
 	{
-		x_rotate_key(key, fdf);
+		(*fdf).model = x_rotate_key(key, fdf);
 	}
 	if (key == UP || key == DOWN || key == 65362 || key == 65364)
 	{
@@ -71,25 +67,24 @@ int			hook_keydown(int key, t_fdf *fdf)
 	}
 	if (key == MINUS || key == PLUS)
 	{
-		z_rotate_key(key, fdf);
+		(*fdf).model = scale(fdf, key);
 	}
 	if (key == U_ZERO || key == U_ONE)
 	{
 //		z_height((*fdf), key);
-		(*fdf).model = transform_model(destroy_z(), (*fdf).model);
+//		(*fdf).model = transform_model(destroy_z(), (*fdf).model);
 	}
 	if (key == MAC_RANDOM || key == U_RANDOM)
 	{
-		if ((*fdf).random == 1)
+		if ((*fdf).colr == 1)
 		{
-			(*fdf).random = 0;
-			draw_model((*fdf).mlx, (*fdf).model, 0);
+			(*fdf).colr = VIOLET;
 		}
 		else
 		{
-			(*fdf).random = 1;
-			draw_model((*fdf).mlx, (*fdf).model, (*fdf).random);
+			(*fdf).colr = 1;
 		}
 	}
+	draw_model(*fdf);
 	return (0);
 }

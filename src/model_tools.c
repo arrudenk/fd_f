@@ -51,28 +51,23 @@ t_model		*copy_model(t_model *src)
 	return (new_model);
 }
 
-t_model		*transform_model(t_mat4 *matrix, t_model *model)
+t_model		*transform_model(t_mat4 matrix, t_model *model)
 {
-	t_model	*new_model;
 	int		i;
 	int		j;
 
 	i = -1;
-	new_model = copy_model(model);
-//	new_model->data = ft_memalloc(sizeof(t_point *) * model->size_x);
 	while (++i < model->size_x)
 	{
-//		new_model->data[i] = ft_memalloc(sizeof(t_point *) * model->size_y);
 		j = -1;
 		while (++j < model->size_y)
 		{
-//			new_model->data[i][j] = ft_memalloc(sizeof(t_point));
-			new_model->data[i][j]->pos = vec4_mat4_multiply(POS(i, j), matrix);
+			model->data[i][j]->pos = vec4_mat4_multiply(POS(i, j), matrix);
 		}
 	}
-	new_model->size_x = model->size_x;
-	new_model->size_y = model->size_y;
-	return (new_model);
+	model->size_x = model->size_x;
+	model->size_y = model->size_y;
+	return (model);
 }
 
 t_model		*init_model(void)
