@@ -37,11 +37,11 @@ t_model		*y_rotate_key(int key, t_fdf *fdf)
 //	t_mat4 centr_back;
 	if (key == UP || key == 65362)
 	{
-//		(*fdf).model = transform_model(rotation_around_centr((*fdf), -1), (*fdf).model);
-//		(*fdf).model = transform_model(create_y_rotation(1), (*fdf).model);
-//		(*fdf).model = transform_model(rotation_around_centr((*fdf), 1), (*fdf).model);
-//		draw_model(*fdf);
-		return (transform_model(create_y_rotation(1), (*fdf).model));
+		(*fdf).model = transform_model(rotation_around_centr((*fdf), -1), (*fdf).model);
+		(*fdf).model = transform_model(create_y_rotation(1), (*fdf).model);
+		(*fdf).model = transform_model(rotation_around_centr((*fdf), 1), (*fdf).model);
+		draw_model(*fdf);
+		return ((*fdf).model);
 	}
 	else
 		return (transform_model(create_y_rotation(-1), (*fdf).model));
