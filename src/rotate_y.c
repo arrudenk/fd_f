@@ -16,23 +16,23 @@ static void	rotate_y(t_fdf fdf, int mod)
 {
 	int		i;
 	int		j;
-	t_vec3	*rot;
+	t_vec3	rot;
 	t_point	***dat;
 
 	i = -1;
-	rot = new_vec3(0, 0, 0);
+	rot = vec3(0, 0, 0);
 	dat = fdf.model->data;
 	while (++i < fdf.model->size_x)
 	{
 		j = -1;
 		while (++j < fdf.model->size_y)
 		{
-			rot->x = dat[i][j]->pos->x * cos(mod * 1.2 * RAD) +
-					dat[i][j]->pos->z * sin(mod * 1.2 * RAD);
-			rot->z = -dat[i][j]->pos->x * sin(mod * 1.2 * RAD) +
-					dat[i][j]->pos->z * cos(mod * 1.2 * RAD);
-			dat[i][j]->pos->x = rot->x;
-			dat[i][j]->pos->z = rot->z;
+			rot.x = dat[i][j]->pos.x * cos(mod * 1.2 * RAD) +
+					dat[i][j]->pos.z * sin(mod * 1.2 * RAD);
+			rot.z = -dat[i][j]->pos.x * sin(mod * 1.2 * RAD) +
+					dat[i][j]->pos.z * cos(mod * 1.2 * RAD);
+			dat[i][j]->pos.x = rot.x;
+			dat[i][j]->pos.z = rot.z;
 		}
 	}
 	draw_model(fdf.mlx, fdf.model, fdf.random);

@@ -36,7 +36,7 @@ void	push_data(t_model *model, char **data, int i)
 	{
 		model->data[i][j] = ft_memalloc(sizeof(t_point));
 		model->data[i][j]->rgb = new_color(data[j]);
-		model->data[i][j]->pos = new_vec4(i * STEP, j * STEP
+		model->data[i][j]->pos = vec4(i * STEP, j * STEP
 				, ft_atoi(data[j]) * STEP, 1);
 		j++;
 	}

@@ -24,8 +24,8 @@
 # include "keys.h"
 
 # define VIOLET 0xA800DB
-# define M_X(a, b) (model->data[a][b]->pos->x)
-# define M_Y(a, b) (model->data[a][b]->pos->y)
+# define M_X(a, b) (model->data[a][b]->pos.x)
+# define M_Y(a, b) (model->data[a][b]->pos.y)
 # define POS(a, b) (model->data[a][b]->pos)
 # define W 1280
 # define H 720
@@ -83,8 +83,8 @@ t_mlx			*init_mlx(void);
 t_model			*init_model(void);
 int				get_model(t_model *model, char *file);
 t_model			*copy_model(t_model *src);
-void			print_vec3(t_vec3 *v);
-void			print_vec4(t_vec4 *v);
+void			print_vec3(t_vec3 v);
+void			print_vec4(t_vec4 v);
 void			print_model(t_model *map);
 t_model			*transform_model(t_mat4 *matrix, t_model *map);
 void			x_rotate_key(int key, t_fdf *fdf);

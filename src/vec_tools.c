@@ -35,25 +35,23 @@ t_mat4		*new_mat4(void)
 	return (m);
 }
 
-t_vec3		*vec3_mat3_multiply(t_vec3 *v, t_mat3 *m)
+t_vec3		vec3_mat3_multiply(t_vec3 v, t_mat3 *m)
 {
-	t_vec3 *r;
+	t_vec3 r;
 
-	r = ft_memalloc(sizeof(t_mat3));
-	r->x = dot_vec3(v, &m->x_axis);
-	r->y = dot_vec3(v, &m->y_axis);
-	r->z = dot_vec3(v, &m->z_axis);
+	r.x = dot_vec3(v, m->x_axis);
+	r.y = dot_vec3(v, m->y_axis);
+	r.z = dot_vec3(v, m->z_axis);
 	return (r);
 }
 
-t_vec4		*vec4_mat4_multiply(t_vec4 *v, t_mat4 *m)
+t_vec4		vec4_mat4_multiply(t_vec4 v, t_mat4 *m)
 {
-	t_vec4 *r;
+	t_vec4 r;
 
-	r = ft_memalloc(sizeof(t_vec4));
-	r->x = dot_vec4(v, &m->x_axis);
-	r->y = dot_vec4(v, &m->y_axis);
-	r->z = dot_vec4(v, &m->z_axis);
-	r->w = dot_vec4(v, &m->w_axis);
+	r.x = dot_vec4(v, m->x_axis);
+	r.y = dot_vec4(v, m->y_axis);
+	r.z = dot_vec4(v, m->z_axis);
+	r.w = dot_vec4(v, m->w_axis);
 	return (r);
 }
