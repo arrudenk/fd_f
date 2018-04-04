@@ -14,8 +14,8 @@
 
 void		error(int error)
 {
-	if (error == 1)
-		ft_putendl("bad arguments");
+	if (error == -1)
+		ft_putendl("bad argument");
 	if (error == 2)
 		ft_putendl("invalid map");
 	if (error == 3)
@@ -24,6 +24,10 @@ void		error(int error)
 		ft_putendl("");
 	if (error == 5)
 		ft_putendl("");
+	if (error == 6)
+		ft_putendl("wrong map size");
+	if (error == 7)
+		ft_putendl("bad map char");
 	exit(error);
 }
 
@@ -33,7 +37,8 @@ int			main(int argc, char **argv)
 	t_fdf		fdf;
 	char		*file;
 
-	file = "../maps/pyramid";
+	file = "../maps/pyra.fdf";
+	check_argv(file);
 //	if (argc != 2)
 //		error(1);
 	model = init_model();
@@ -44,9 +49,8 @@ int			main(int argc, char **argv)
 	fdf.model = transform_model(fdf.cam, model);
 	fdf.mlx = init_mlx();
 	fdf.colr = VIOLET;
-
 	draw_model(fdf);
-	mlx_hook(fdf.mlx->win,2,5, hook_keydown, &fdf);
+	mlx_hook(fdf.mlx->win, 2, 5, hook_keydown, &fdf);
 	mlx_loop(fdf.mlx->mlx);
 	return (0);
 }
@@ -68,11 +72,6 @@ int			hook_keydown(int key, t_fdf *fdf)
 	if (key == MINUS || key == PLUS)
 	{
 		(*fdf).model = scale(fdf, key);
-	}
-	if (key == U_ZERO || key == U_ONE)
-	{
-//		z_height((*fdf), key);
-//		(*fdf).model = transform_model(destroy_z(), (*fdf).model);
 	}
 	if (key == MAC_RANDOM || key == U_RANDOM)
 	{

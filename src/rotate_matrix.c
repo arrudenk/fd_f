@@ -27,7 +27,7 @@ t_mat4	create_x_rotation(double mod)
 t_mat4	create_y_rotation(double mod)
 {
 	t_mat4	r;
-	
+
 	r.x_axis = vec4(cos(mod * RAD), 0, sin(mod * RAD), 0);
 	r.y_axis = vec4(0, 1, 0, 0);
 	r.z_axis = vec4(-sin(mod * RAD), 0, cos(mod * RAD), 0);
@@ -38,7 +38,7 @@ t_mat4	create_y_rotation(double mod)
 t_mat4	create_z_rotation(double mod)
 {
 	t_mat4	r;
-	
+
 	r.x_axis = vec4(cos(mod * RAD), -sin(mod * RAD), 0, 0);
 	r.y_axis = vec4(sin(mod * RAD), cos(mod * RAD), 0, 0);
 	r.z_axis = vec4(0, 0, 1, 0);
@@ -48,7 +48,7 @@ t_mat4	create_z_rotation(double mod)
 
 t_mat4	rotation_around_centr(t_fdf fdf, int mod)
 {
-	t_mat4 r;
+	t_mat4	r;
 	double	x;
 	double	y;
 	double	z;

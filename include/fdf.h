@@ -27,9 +27,11 @@
 # define M_X(a, b) (fdf.model->data[a][b]->pos.x)
 # define M_Y(a, b) (fdf.model->data[a][b]->pos.y)
 # define POS(a, b) (model->data[a][b]->pos)
+# define FDIMG (fdf.mlx->img->image)
 # define W 1280
 # define H 720
 # define STEP 7
+# define END -666.666
 
 static int ran = 0;
 
@@ -104,5 +106,9 @@ void			ft_free_2d(char **array);
 void			ft_free_3d(char ***array);
 t_mat4			rotation_around_centr(t_fdf fdf, int mod);
 t_mat4			move_down(t_fdf fdf, int mod);
+void			error(int error);
+
+int				check_argv(char *argv);
+void			check_point(char *data);
 
 #endif

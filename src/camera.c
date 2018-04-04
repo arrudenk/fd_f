@@ -12,14 +12,14 @@
 
 #include "../include/fdf.h"
 
-t_mat4	look_at(t_vec3 eye, t_vec3 target, t_vec3 up)
+t_mat4		look_at(t_vec3 eye, t_vec3 target, t_vec3 up)
 {
 	t_mat4	r;
 	t_mat4	m;
 	t_vec3	f;
 	t_vec3	s;
 	t_vec3	u;
-	
+
 	f = normalize_vec3(subtract_vec3(target, eye));
 	s = normalize_vec3(cross_vec3(f, up));
 	u = cross_vec3(s, f);
@@ -34,7 +34,7 @@ t_mat4	look_at(t_vec3 eye, t_vec3 target, t_vec3 up)
 	return (mat4_mat4_multiply(r, m));
 }
 
-t_mat4	camera(t_vec3 eye, t_vec3 tar, t_vec3 up)
+t_mat4		camera(t_vec3 eye, t_vec3 tar, t_vec3 up)
 {
 	t_mat4	cam;
 

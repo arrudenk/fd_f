@@ -18,7 +18,7 @@ ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 
 set(SOURCE_FILES src/main.c include/fdf.h
-        src/draw.c src/vector_math.c include/vector_math.h src/create_model.c src/hex_to_dec.c src/rotate.c src/rotate_matrix.c src/new_vec.c src/vec_tools.c src/camera.c src/matrix_math.c src/model_tools.c src/color.c src/mlx.c "src/create_image.c" include/keys.h src/debug_tools.c src/free_tools.c src/destroy_height.c src/zoom.c)
+        src/draw.c src/vector_math.c include/vector_math.h src/create_model.c src/hex_to_dec.c src/rotate.c src/rotate_matrix.c src/new_vec.c src/vec_tools.c src/camera.c src/matrix_math.c src/model_tools.c src/color.c src/mlx.c "src/create_image.c" include/keys.h src/debug_tools.c src/free_tools.c src/destroy_height.c src/zoom.c src/check_input.c)
 
 add_executable(fd_f ${SOURCE_FILES})
 IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")

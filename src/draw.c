@@ -12,8 +12,6 @@
 
 #include "../include/fdf.h"
 
-
-
 static void	draw_h(t_mlx *mlx, t_draw i, int colr)
 {
 	double	y;
@@ -78,7 +76,7 @@ static void	draw_line(t_mlx *mlx, t_draw info, int colr)
 	}
 }
 
-void	draw_model(t_fdf fdf)
+void		draw_model(t_fdf fdf)
 {
 	int i;
 	int j;
@@ -104,5 +102,5 @@ void	draw_model(t_fdf fdf)
 					, M_X(j + 1, i) + W / 2, M_Y(j + 1, i) + H / 2), fdf.colr);
 		}
 	}
-	mlx_put_image_to_window(fdf.mlx->mlx, fdf.mlx->win, fdf.mlx->img->image, 0, 0);
+	mlx_put_image_to_window(fdf.mlx->mlx, fdf.mlx->win, FDIMG, 0, 0);
 }

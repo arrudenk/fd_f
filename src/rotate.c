@@ -15,7 +15,6 @@
 
 t_model		*x_rotate_key(int key, t_fdf *fdf)
 {
-
 	if (key == RIGHT || key == 65363)
 		return (transform_model(create_x_rotation(1), (*fdf).model));
 	else
@@ -32,16 +31,9 @@ t_model		*z_rotate_key(int key, t_fdf *fdf)
 
 t_model		*y_rotate_key(int key, t_fdf *fdf)
 {
-//	t_mat4	tettt;
-//	t_mat4 centr;
-//	t_mat4 centr_back;
 	if (key == UP || key == 65362)
 	{
-		(*fdf).model = transform_model(rotation_around_centr((*fdf), -1), (*fdf).model);
-		(*fdf).model = transform_model(create_y_rotation(1), (*fdf).model);
-		(*fdf).model = transform_model(rotation_around_centr((*fdf), 1), (*fdf).model);
-		draw_model(*fdf);
-		return ((*fdf).model);
+		return (transform_model(create_y_rotation(1), (*fdf).model));
 	}
 	else
 		return (transform_model(create_y_rotation(-1), (*fdf).model));
