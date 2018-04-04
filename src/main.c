@@ -35,17 +35,16 @@ int			main(int argc, char **argv)
 {
 	t_model		*model;
 	t_fdf		fdf;
-	char		*file;
+//	char		*file;
 
-	file = "../maps/pyra.fdf";
-	check_argv(file);
-//	if (argc != 2)
-//		error(1);
+	check_argv(argv[1]);
+	if (argc != 2)
+		error(1);
 	model = init_model();
 	fdf.cam = camera(vec3(0.5, 0.0, 0.0)
 					, vec3(1.0, 0.0, 0.0)
 					, vec3(0.0, 1.0, 0.0));
-	get_model(model, file);
+	get_model(model, argv[1]);
 	fdf.model = transform_model(fdf.cam, model);
 	fdf.mlx = init_mlx();
 	fdf.colr = VIOLET;

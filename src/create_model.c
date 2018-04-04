@@ -12,10 +12,10 @@
 
 #include "../include/fdf.h"
 
-size_t	get_xsize(int fd2)
+static int		get_xsize(int fd2)
 {
 	char	*line;
-	size_t	x_size;
+	int	x_size;
 
 	x_size = 0;
 	while (get_next_line(fd2, &line))
@@ -27,7 +27,7 @@ size_t	get_xsize(int fd2)
 	return (x_size);
 }
 
-void	push_data(t_model *model, char **data, int i)
+static void		push_data(t_model *model, char **data, int i)
 {
 	int j;
 
@@ -41,9 +41,9 @@ void	push_data(t_model *model, char **data, int i)
 	}
 }
 
-size_t	cols_num(char **cols)
+static int		cols_num(char **cols)
 {
-	size_t	len;
+	int	len;
 
 	len = 0;
 	while (cols[len])
@@ -51,7 +51,7 @@ size_t	cols_num(char **cols)
 	return (len);
 }
 
-int		get_model(t_model *model, char *file)
+int				get_model(t_model *model, char *file)
 {
 	int		fd;
 	int		fd2;
@@ -73,7 +73,8 @@ int		get_model(t_model *model, char *file)
 			error(6);
 		model->size_y = cols_num(cols[i]);
 		model->data[i] = ft_memalloc(sizeof(t_point *) * model->size_y + 1);
-		push_data(model, cols[i], i++);
+		push_data(model, cols[i], i);
+		i++;
 	}
 	ft_strdel(&line);
 	ft_free_3d(cols);

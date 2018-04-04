@@ -46,19 +46,19 @@ t_mat4	create_z_rotation(double mod)
 	return (r);
 }
 
-t_mat4	rotation_around_centr(t_fdf fdf, int mod)
-{
-	t_mat4	r;
-	double	x;
-	double	y;
-	double	z;
-
-	x = fdf.model->size_x / 2;
-	y = fdf.model->size_x / 2;
-	z = fdf.model->size_x / 2;
-	r = new_mat4();
-	r.z_axis.x = x;
-	r.z_axis.y = y;
-	r.z_axis.z = z;
-	return (r);
-}
+//t_mat4	rotation_around_centr(t_fdf fdf, int mod)
+//{
+//	t_mat4	r;
+//	double	x;
+//	double	y;
+//	double	z;
+//
+//	x = fdf.model->size_x / 2;
+//	y = fdf.model->size_x / 2;
+//	z = fdf.model->size_x / 2;
+//	r = new_mat4();
+//	r.z_axis.x = x;
+//	r.z_axis.y = y;
+//	r.z_axis.z = z;
+//	return (r);
+//}

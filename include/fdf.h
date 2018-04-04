@@ -30,7 +30,7 @@
 # define FDIMG (fdf.mlx->img->image)
 # define W 1280
 # define H 720
-# define STEP 7
+# define STEP 1
 # define END -666.666
 
 static int ran = 0;
@@ -63,8 +63,8 @@ typedef	struct	s_mlx
 typedef	struct	s_model
 {
 	t_point	***data;
-	size_t	size_x;
-	size_t	size_y;
+	int		size_x;
+	int		size_y;
 }				t_model;
 
 typedef	struct	s_fdf
