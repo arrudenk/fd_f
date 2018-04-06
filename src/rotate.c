@@ -41,7 +41,7 @@ t_model		*z_rotate_key(int key, t_fdf *fdf)
 
 	original = (*fdf).origin_model;
 	ft_free_model((*fdf).model);
-	if (key == PLUS)
+	if (key == Q)
 	{
 		model = copy_model(transform_model(create_z_rotation(1), original));
 		model = transform_model((*fdf).cam, model);

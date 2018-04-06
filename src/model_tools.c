@@ -35,7 +35,7 @@ t_model		*copy_model(t_model *src)
 	int		j;
 
 	i = -1;
-	new_model = init_model();
+	new_model = (t_model *)ft_memalloc(sizeof(t_model));
 	new_model->data = ft_memalloc(sizeof(t_point *) * src->size_x);
 	while (++i < src->size_x)
 	{

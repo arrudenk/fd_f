@@ -15,7 +15,7 @@
 static int		get_xsize(int fd2)
 {
 	char	*line;
-	int	x_size;
+	int		x_size;
 
 	x_size = 0;
 	while (get_next_line(fd2, &line))
@@ -29,7 +29,7 @@ static int		get_xsize(int fd2)
 
 static void		push_data(t_model *model, char **data, int i)
 {
-	int j;
+	int	j;
 
 	j = -1;
 	while (data[++j])
@@ -63,7 +63,7 @@ int				get_model(t_model *model, char *file)
 	fd2 = open(file, O_RDONLY);
 	model->size_x = get_xsize(fd2);
 	cols = ft_memalloc(sizeof(char **) * model->size_x + 10);
-	model->data = ft_memalloc(sizeof(t_point *) * model->size_x + 1);
+	model->data = ft_memalloc(sizeof(t_point *) * model->size_x);
 	fd = open(file, O_RDONLY);
 	while (get_next_line(fd, &line))
 	{
@@ -72,7 +72,7 @@ int				get_model(t_model *model, char *file)
 		if (cols_num(cols[0]) != cols_num(cols[i]))
 			error(6);
 		model->size_y = cols_num(cols[i]);
-		model->data[i] = ft_memalloc(sizeof(t_point *) * model->size_y + 1);
+		model->data[i] = ft_memalloc(sizeof(t_point *) * model->size_y);
 		push_data(model, cols[i], i);
 		i++;
 	}

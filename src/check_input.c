@@ -27,7 +27,10 @@ int			check_argv(char *argv)
 
 	fd = open(argv, O_RDONLY);
 	if (get_next_line(fd, &line) <= 0 || fd <= 0)
+	{
+		ft_strdel(&line);
 		error(-1);
+	}
 	return (0);
 }
 

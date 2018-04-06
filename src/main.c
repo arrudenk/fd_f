@@ -12,6 +12,8 @@
 
 #include "../include/fdf.h"
 
+
+
 void		error(int error)
 {
 	if (error == -1)
@@ -90,6 +92,10 @@ int			hook_keydown(int key, t_fdf *fdf)
 	if (key == LEFT || key == RIGHT || key == 65363 || key == 65361)
 	{
 		(*fdf).model = x_rotate_key(key, fdf);
+	}
+	if (key == Q || key == E)
+	{
+		(*fdf).model = z_rotate_key(key, fdf);
 	}
 	if (key == UP || key == DOWN || key == 65362 || key == 65364)
 	{
