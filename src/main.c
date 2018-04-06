@@ -62,7 +62,6 @@ int			main(int argc, char **argv)
 
 	t_model		*model;
 	t_fdf		fdf;
-//	char		*file;
 
 	check_argv(argv[1]);
 	if (argc != 2)
@@ -72,9 +71,8 @@ int			main(int argc, char **argv)
 					, vec3(0.0, 0.0, 0.0)
 					, vec3(0.0, 1.0, 0.0));
 	get_model(model, argv[1]);
-	t_mat4 t = create_translation(vec3(231, -200, 0));
-	fdf.model = transform_model(t, model);
-	fdf.model = transform_model(fdf.cam, fdf.model);
+	fdf.origin_model = copy_model(model);
+	fdf.model = transform_model(fdf.cam, model);
 	fdf.mlx = init_mlx();
 	fdf.colr = VIOLET;
 	draw_model(fdf);
@@ -95,7 +93,7 @@ int			hook_keydown(int key, t_fdf *fdf)
 	}
 	if (key == UP || key == DOWN || key == 65362 || key == 65364)
 	{
-		y_rotate_key(key, fdf);
+		(*fdf).model = y_rotate_key(key, fdf);
 	}
 	if (key == MINUS || key == PLUS)
 	{

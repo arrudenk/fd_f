@@ -15,26 +15,63 @@
 
 t_model		*x_rotate_key(int key, t_fdf *fdf)
 {
+	t_model *model;
+	t_model *original;
+
+	original = (*fdf).origin_model;
+	ft_free_model((*fdf).model);
 	if (key == RIGHT || key == 65363)
-		return (transform_model(create_x_rotation(1), (*fdf).model));
+	{
+		model = copy_model(transform_model(create_x_rotation(1), original));
+		model = transform_model((*fdf).cam, model);
+		return (model);
+	}
 	else
-		return (transform_model(create_x_rotation(-1), (*fdf).model));
+	{
+		model = copy_model(transform_model(create_x_rotation(-1), original));
+		model = transform_model((*fdf).cam, model);
+		return (model);
+	}
 }
 
 t_model		*z_rotate_key(int key, t_fdf *fdf)
 {
+	t_model *model;
+	t_model *original;
+
+	original = (*fdf).origin_model;
+	ft_free_model((*fdf).model);
 	if (key == PLUS)
-		return (transform_model(create_z_rotation(1), (*fdf).model));
+	{
+		model = copy_model(transform_model(create_z_rotation(1), original));
+		model = transform_model((*fdf).cam, model);
+		return (model);
+	}
 	else
-		return (transform_model(create_z_rotation(-1), (*fdf).model));
+	{
+		model = copy_model(transform_model(create_z_rotation(-1), original));
+		model = transform_model((*fdf).cam, model);
+		return (model);
+	}
 }
 
 t_model		*y_rotate_key(int key, t_fdf *fdf)
 {
+	t_model	*model;
+	t_model	*original;
+
+	original = (*fdf).origin_model;
+	ft_free_model((*fdf).model);
 	if (key == UP || key == 65362)
 	{
-		return (transform_model(create_y_rotation(1), (*fdf).model));
+		model = copy_model(transform_model(create_y_rotation(1), original));
+		model = transform_model((*fdf).cam, model);
+		return (model);
 	}
 	else
-		return (transform_model(create_y_rotation(-1), (*fdf).model));
+	{
+		model = copy_model(transform_model(create_y_rotation(-1), original));
+		model = transform_model((*fdf).cam, model);
+		return (model);
+	}
 }

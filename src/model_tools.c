@@ -48,6 +48,8 @@ t_model		*copy_model(t_model *src)
 					, sizeof(t_point));
 		}
 	}
+	new_model->size_x = src->size_x;
+	new_model->size_y = src->size_y;
 	return (new_model);
 }
 

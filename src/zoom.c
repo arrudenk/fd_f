@@ -38,8 +38,21 @@ static t_model	*zoom_out(t_model *fdf)
 
 t_model			*scale(t_fdf *fdf, int key)
 {
+	t_model	*model;
+	t_model	*original;
+
+	original = (*fdf).origin_model;
+	ft_free_model((*fdf).model);
 	if (key == MINUS)
-		return (zoomer((*fdf).model));
+	{
+		model = copy_model(zoomer(original));
+		model = transform_model((*fdf).cam, model);
+		return (model);
+	}
 	else
-		return (zoom_out((*fdf).model));
+	{
+		model = copy_model(zoom_out(original));
+		model = transform_model((*fdf).cam, model);
+		return (model);
+	}
 }

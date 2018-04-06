@@ -26,7 +26,9 @@ static void	draw_h(t_mlx *mlx, t_draw i, int colr)
 	{
 		y = ((i.y2 - i.y1) / (i.x2 - i.x1)) * (start_x - i.x1) + i.y1;
 		if (start_x > 0 && y > 0 && start_x < W && y < H)
-			image_set_pixel(mlx, start_x, y, colr);
+		{
+			image_set_pixel(mlx, (int)start_x, (int)y, colr);
+		}
 		else
 			break ;
 		start_x++;
@@ -48,7 +50,7 @@ static void	draw_v(t_mlx *mlx, t_draw i, int colr)
 		x = ((i.x2 - i.x1) / (i.y2 - i.y1)) * (start_y - i.y1) + i.x1;
 		if (start_y > 0 && x > 0 && start_y < H && x < W)
 		{
-			image_set_pixel(mlx, x, start_y, colr);
+			image_set_pixel(mlx, (int)x, (int)start_y, colr);
 		}
 		else
 		{

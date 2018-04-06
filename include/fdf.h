@@ -69,6 +69,8 @@ typedef	struct	s_model
 
 typedef	struct	s_fdf
 {
+	t_model	*origin_model;
+	t_model	*render_model;
 	t_model	*model;
 	t_mlx	*mlx;
 	t_mat4	cam;
@@ -111,5 +113,6 @@ void			error(int error);
 
 int				check_argv(char *argv);
 void			check_point(char *data);
+void			ft_free_model(t_model *model);
 
 #endif

@@ -35,3 +35,27 @@ void		ft_free_3d(char ***array)
 	}
 	free(array);
 }
+
+void		ft_free_model(t_model *model)
+{
+	int a;
+	int b;
+
+	a = -1;
+	while (++a < model->size_x)
+	{
+		b = -1;
+		while (++b < model->size_y)
+		{
+			ft_memdel((void *)&model->data[a][b]);
+		}
+	}
+	a = -1;
+
+	while (++a < model->size_x)
+	{
+		ft_memdel((void *)&model->data[a]);
+	}
+	ft_memdel((void *)&model->data);
+	ft_memdel((void *)&model);
+}
