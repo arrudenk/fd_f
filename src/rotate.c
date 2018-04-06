@@ -21,8 +21,8 @@ t_model		*x_rotate_key(int key, t_fdf *fdf)
 	double	y;
 
 	original = (*fdf).origin_model;
-	x = original->data[original->size_x / 2][original->size_y / 2]->pos.x;
-	y = original->data[original->size_x / 2][original->size_y / 2]->pos.y;
+	x = original->data[original->size_x / 2][original->size_x / 2]->pos.x;
+	y = original->data[original->size_x / 2][original->size_x / 2]->pos.y;
 	ft_free_model((*fdf).model);
 	if (key == RIGHT || key == 65363)
 	{
@@ -52,8 +52,8 @@ t_model		*z_rotate_key(int key, t_fdf *fdf)
 	double	y;
 
 	original = (*fdf).origin_model;
-	x = original->data[original->size_x / 2][original->size_y / 2]->pos.x;
-	y = original->data[original->size_x / 2][original->size_y / 2]->pos.y;
+	x = original->data[original->size_x / 2][original->size_x / 2]->pos.x;
+	y = original->data[original->size_x / 2][original->size_x / 2]->pos.y;
 	ft_free_model((*fdf).model);
 	if (key == Q)
 	{
@@ -81,8 +81,8 @@ t_model		*y_rotate_key(int key, t_fdf *fdf)
 	double	y;
 
 	original = (*fdf).origin_model;
-	x = original->data[original->size_x / 2][original->size_y / 2]->pos.x;
-	y = original->data[original->size_x / 2][original->size_y / 2]->pos.y;
+	x = original->data[original->size_x / 2][original->size_x / 2]->pos.x;
+	y = original->data[original->size_x / 2][original->size_x / 2]->pos.y;
 	ft_free_model((*fdf).model);
 	if (key == UP || key == 65362)
 	{

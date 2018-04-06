@@ -64,6 +64,8 @@ int			main(int argc, char **argv)
 
 	t_model		*model;
 	t_fdf		fdf;
+	double	x;
+	double	y;
 
 	check_argv(argv[1]);
 	if (argc != 2)
@@ -73,6 +75,8 @@ int			main(int argc, char **argv)
 					, vec3(0.0, 0.0, 0.0)
 					, vec3(0.0, 1.0, 0.0));
 	get_model(model, argv[1]);
+	x = model->data[model->size_x / 2][model->size_x / 2]->pos.x;
+	y = model->data[model->size_x / 2][model->size_x / 2]->pos.y;
 	fdf.origin_model = copy_model(model);
 	fdf.model = transform_model(fdf.cam, model);
 	fdf.mlx = init_mlx();

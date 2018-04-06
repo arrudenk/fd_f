@@ -16,7 +16,7 @@
 # include "libft.h"
 # include <math.h>
 
-# define ALPHA 12.2
+# define ALPHA 22.2
 # define RAD (ALPHA / (180 / 3.14))
 
 typedef struct	s_vec3
