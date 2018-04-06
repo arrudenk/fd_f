@@ -67,7 +67,7 @@ t_model		*transform_model(t_mat4 matrix, t_model *model)
 			model->data[i][j]->pos = vec4_mat4_multiply(POS(i, j), matrix);
 		}
 	}
-	print_model(model);
+//	print_model(model);
 	return (model);
 }
 

@@ -31,6 +31,7 @@ int			check_argv(char *argv)
 		ft_strdel(&line);
 		error(-1);
 	}
+	ft_strdel(&line);
 	return (0);
 }
 
