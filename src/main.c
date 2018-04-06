@@ -33,6 +33,33 @@ void		error(int error)
 
 int			main(int argc, char **argv)
 {
+//	ft_putstr("NUCLEAR POLYGON BITCH\n\n");
+//
+//	t_vec4 v1 = vec4(-3, 4, 1, 0);
+//	t_vec4 v2 = vec4(-3, 4, 1, 0);
+//	t_vec4 nv1 = normalize_vec4(v1);
+//	t_vec4 nv2 = normalize_vec4(v2);
+//
+//	double d = dot_vec4(nv1, nv2);
+//
+//	t_mat4 mat1 = new_mat4();
+//	mat1.x_axis = vec4(5, 1, 2, 0);
+//	mat1.y_axis = vec4(-3, 2, 0, 1);
+//	mat1.z_axis = vec4(0, 2, 4, 0);
+//	mat1.w_axis = vec4(-6, 0, 1, 1);
+//	print_mat4(mat1);
+//
+//	t_mat4 mat2 = new_mat4();
+//	mat2.x_axis = vec4(2, 0,-1, 0);
+//	mat2.y_axis = vec4(-1, 4, 3, 1);
+//	mat2.z_axis = vec4(-5, 2, 0, 0);
+//	mat2.w_axis = vec4(2, 0, 0, 1);
+//	print_mat4(mat2);
+//
+//	print_mat4(mat4_mat4_multiply(mat1, mat2));
+//
+//	ft_putstr("\nNUCLEAR POLYGON BITCH\n");
+
 	t_model		*model;
 	t_fdf		fdf;
 //	char		*file;
@@ -41,11 +68,13 @@ int			main(int argc, char **argv)
 	if (argc != 2)
 		error(1);
 	model = init_model();
-	fdf.cam = camera(vec3(0.5, 0.0, 0.0)
-					, vec3(1.0, 0.0, 0.0)
+	fdf.cam = camera(vec3(0.0, 0.5, 0.5)
+					, vec3(0.0, 0.0, 0.0)
 					, vec3(0.0, 1.0, 0.0));
 	get_model(model, argv[1]);
-	fdf.model = transform_model(fdf.cam, model);
+	t_mat4 t = create_translation(vec3(231, -200, 0));
+	fdf.model = transform_model(t, model);
+	fdf.model = transform_model(fdf.cam, fdf.model);
 	fdf.mlx = init_mlx();
 	fdf.colr = VIOLET;
 	draw_model(fdf);

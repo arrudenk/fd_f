@@ -30,7 +30,7 @@
 # define FDIMG (fdf.mlx->img->image)
 # define W 1280
 # define H 720
-# define STEP 1
+# define STEP 7
 # define END -666.666
 
 static int ran = 0;
@@ -87,6 +87,7 @@ int				get_model(t_model *model, char *file);
 t_model			*copy_model(t_model *src);
 void			print_vec3(t_vec3 v);
 void			print_vec4(t_vec4 v);
+void			print_mat4(t_mat4 mat);
 void			print_model(t_model *map);
 t_model			*transform_model(t_mat4 matrix, t_model *map);
 t_model			*x_rotate_key(int key, t_fdf *fdf);
@@ -104,7 +105,7 @@ void			clear_image(t_mlx *mlx);
 
 void			ft_free_2d(char **array);
 void			ft_free_3d(char ***array);
-t_mat4			rotation_around_centr(t_fdf fdf, int mod);
+t_mat4			create_translation(t_vec3 pos);
 t_mat4			move_down(t_fdf fdf, int mod);
 void			error(int error);
 

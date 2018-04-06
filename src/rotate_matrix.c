@@ -46,19 +46,14 @@ t_mat4	create_z_rotation(double mod)
 	return (r);
 }
 
-//t_mat4	rotation_around_centr(t_fdf fdf, int mod)
-//{
-//	t_mat4	r;
-//	double	x;
-//	double	y;
-//	double	z;
-//
-//	x = fdf.model->size_x / 2;
-//	y = fdf.model->size_x / 2;
-//	z = fdf.model->size_x / 2;
-//	r = new_mat4();
-//	r.z_axis.x = x;
-//	r.z_axis.y = y;
-//	r.z_axis.z = z;
-//	return (r);
-//}
+t_mat4	create_translation(t_vec3 pos)
+{
+	t_mat4	r;
+
+	r.x_axis = vec4(1.0, 0.0, 0.0, 0.0);
+	r.y_axis = vec4(0.0, 1.0, 0.0, 0.0);
+	r.z_axis = vec4(0.0, 0.0, 1.0, 0.0);
+	r.w_axis = vec4(pos.x, pos.y, pos.z, 1.0);
+
+	return (r);
+}

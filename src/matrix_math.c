@@ -40,3 +40,15 @@ t_mat4		mat4_mat4_multiply(t_mat4 m1, t_mat4 m2)
 	r.w_axis = quick_math(r.w_axis, m1, m2.w_axis);
 	return (r);
 }
+
+t_mat4		transpose_mat4(t_mat4 m)
+{
+	t_mat4 r;
+
+	/*r.x_axis = vec4(m.x_axis.x, m.y_axis.x, m.z_axis.x, m.w_axis.x);
+	r.x_axis = vec4(m.x_axis.y, m.y_axis.y, m.z_axis.y, m.w_axis.y);
+	r.x_axis = vec4(m.x_axis.z, m.y_axis.z, m.z_axis.z, m.w_axis.z);
+	r.x_axis = vec4(m.x_axis.w, m.y_axis.w, m.z_axis.w, m.w_axis.w);*/
+
+	return (r);
+}

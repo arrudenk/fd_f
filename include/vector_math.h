@@ -69,6 +69,7 @@ t_mat3			*new_mat3();
 t_mat4			new_mat4();
 t_mat4			camera(t_vec3 eye, t_vec3 tar, t_vec3 up);
 t_vec3			normalize_vec3(t_vec3 v);
+t_mat4			transpose_mat4(t_mat4 mat); // doesn't work yet
 t_mat4			mat4_mat4_multiply(t_mat4 m1, t_mat4 m2);
 t_vec3			vec3_mat3_multiply(t_vec3 v, t_mat3 *m);
 t_vec4			vec4_mat4_multiply(t_vec4 v, t_mat4 m);
