@@ -16,6 +16,13 @@
 # define DOWN 125
 # define RIGHT 124
 # define LEFT 123
+# define W_KEY 13
+# define S_KEY 1
+# define A_KEY 0
+# define D_KEY 2
+# define CAM 8
+
+
 # define PLUS 78
 # define MINUS 69
 # define MAC_RANDOM 15

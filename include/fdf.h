@@ -75,6 +75,7 @@ typedef	struct	s_fdf
 	t_mlx	*mlx;
 	t_mat4	cam;
 	int		colr;
+	int		rotate_mod;
 }				t_fdf;
 
 void			draw_model(t_fdf fdf);
