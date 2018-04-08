@@ -71,14 +71,23 @@ int			main(int argc, char **argv)
 	if (argc != 2)
 		error(1);
 	model = init_model();
-	fdf.cam = camera(vec3(0.0, 0.5, 0.5)
+	fdf.cam = camera(vec3(0.5, 0.5, 0.5)
 					, vec3(0.0, 0.0, 0.0)
 					, vec3(0.0, 1.0, 0.0));
 	get_model(model, argv[1]);
 	x = model->data[model->size_x / 2][model->size_x / 2]->pos.x;
 	y = model->data[model->size_x / 2][model->size_x / 2]->pos.y;
-	fdf.origin_model = copy_model(model);
-	fdf.model = transform_model(fdf.cam, model);
+
+	t_mat4 translate = create_translation(vec3(
+			-(double)model->size_x/2 * STEP,
+			-(double)model->size_y/2 * STEP,
+			-5 * STEP
+	));
+
+	fdf.origin_model = copy_model(transform_model(translate, model));
+	fdf.model = model;
+	fdf.model = transform_model(fdf.cam, fdf.model);
+
 	fdf.mlx = init_mlx();
 	fdf.colr = VIOLET;
 	draw_model(fdf);
